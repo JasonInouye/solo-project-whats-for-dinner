@@ -5,7 +5,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* retrieveFavorites (){
     
     try {
-        const item = yield axios.get('/dinner');
+        const item = yield axios.get('/api/dinner');
         console.log('get all:', item.data);
         yield put({ type: 'SET_FAVORITES', payload: item.data });
 
