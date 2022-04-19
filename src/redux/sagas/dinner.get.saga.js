@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-//get all items from the DB 
+//get all favorites from the DB 
 function* retrieveFavorites (){
     
     try {
-        const item = yield axios.get('/api/dinner');
-        console.log('get all:', item.data);
-        yield put({ type: 'SET_FAVORITES', payload: item.data });
+        const favorite = yield axios.get('/api/dinner');
+        console.log('SAGA GET LOG', favorite.data);
+        yield put({ type: 'SET_FAVORITE', payload: favorite.data });
 
     } catch (err){
         console.log('get all error', err);
