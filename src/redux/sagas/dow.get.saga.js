@@ -1,21 +1,23 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-//get all favorites from the DB 
+//get all Days of the week from the DB 
+// for drop down on various components
 function* retrieveDow (){
     
     try {
-        const favorite = yield axios.get('/api/dinner');
-        console.log('SAGA GET LOG', favorite.data);
-        yield put({ type: 'SET_FAVORITE', payload: favorite.data });
+        const dow = yield axios.get('/api/dow');
+        console.log('SAGA GET DOW LOG', dow.data);
+        yield put({ type:'SET_DOW', payload: dow.data });
 
     } catch (err){
         console.log('get all error', err);
     }   
 }
 
-function* getFavorites() {
-    yield takeLatest('GET_FAVORITES', retrieveFavorites);
+// This is for getting Days of The Week in the drop down in the dinnerhome component
+function* getDow() {
+    yield takeLatest('GET_DOW', retrieveDow);
 }
 
-export default getFavorites;
+export default getDow;

@@ -17,5 +17,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     getFavorites(),
+    getDow(),
   ]);
 }
