@@ -32,7 +32,7 @@ function DinnerHome() {
   const dispatch = useDispatch();
   const favorite = useSelector((store) => store.favorite);
   const dowList = useSelector((store) => store.dow);
-  const [dow, setDow] = useState('');
+  const [dow, setDow] = useState("");
 
   useEffect(() => {
     // dispatch to get all items to display on the DOM
@@ -40,15 +40,15 @@ function DinnerHome() {
     dispatch({ type: "GET_DOW" });
   }, []);
 
-  console.log( 'This is the DOW', dowList);
+  //console.log( 'This is the DOW', dowList);
 
-  const saveDow = (id) => {
-    console.log("Inside of saveDow", id);
+  const saveDow = (favoriteRecipe) => {
+    console.log("Inside of saveDow", favoriteRecipe);
     let addDow = {
-      id,
-      dow
-    }
-    dispatch({ type: 'SET_MENU_DAY', payload: addDow})
+      id: favoriteRecipe.id,
+      spoon_id: favoriteRecipe.spoon_id,
+    };
+    dispatch({ type: "SET_MENU_DOW", payload: addDow });
   };
 
   return (
@@ -56,7 +56,7 @@ function DinnerHome() {
       <Container>
         <Row xs="3">
           {favorite.map((favoriteRecipe) => {
-            console.log(favoriteRecipe);
+            //console.log(favoriteRecipe);
             return (
               <>
                 <Col key={favoriteRecipe.id}>
@@ -67,28 +67,26 @@ function DinnerHome() {
                         <p>{favoriteRecipe.recipe_name}</p>
                       </CardTitle>
                       <CardText>
-                        This should be a description of the receipt
+                        <select
+                          id="dow"
+                          name="dow"
+                          onChange={(event) => setDow(event.target.value)}
+                        >
+                          {dowList.map((dow) => {
+                            return (
+                              <option key={dow.id} value={dow.dow}>
+                                {dow.dow}
+                              </option>
+                            );
+                          })}
+                        </select>
+                        <button onClick={() => saveDow(favoriteRecipe)}>
+                          Add Day
+                        </button>
                       </CardText>
                     </CardBody>
                   </Card>
                 </Col>
-                <label htmlFor="dow">Choose a Day:</label>
-                <select
-                  id="dow"
-                  name="dow"
-                  onChange={(event) => setDow(event.target.value)}
-                >
-                  {dowList.map((dow) => {
-                    return (
-                      <option key={dow.id} value={dow.dow}>
-                        {dow.dow}
-                      </option>
-                    );
-                  })}
-                </select>
-                <button onClick={() => saveDow(favoriteRecipe.id)}>
-                  save dow
-                </button>
               </>
             );
           })}

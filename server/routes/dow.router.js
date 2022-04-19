@@ -25,6 +25,13 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+  console.log( 'Inside of the DOW POST', req.body);
+  // let id = req.body.id;
+  // let dow = req.body.newDow;
+
+  // const queryText = `
+  
+  // ;`;
 });
 
 module.exports = router;

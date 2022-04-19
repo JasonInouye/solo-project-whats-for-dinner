@@ -6,7 +6,7 @@ function* retrieveFavorites (){
     
     try {
         const favorite = yield axios.get('/api/dinner');
-        console.log('SAGA GET LOG', favorite.data);
+        //console.log('SAGA GET LOG', favorite.data);
         yield put({ type: 'SET_FAVORITE', payload: favorite.data });
 
     } catch (err){
