@@ -18,4 +18,4 @@ function* getFavorites() {
     yield takeLatest('GET_FAVORITES', retrieveFavorites);
 }
 
-export default getFavorites; 
+export default getFavorites;
