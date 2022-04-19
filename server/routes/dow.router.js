@@ -8,8 +8,8 @@ router.get('/', (req, res) => {
   const query = `
   SELECT 
     a.dow
-  FROM "dow"
-  ORDER by a."id" DESC
+  FROM "dow" a
+  ORDER by a."id" ASC
   ;`;
   pool.query(query)
   .then( result => {

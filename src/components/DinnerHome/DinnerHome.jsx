@@ -31,21 +31,28 @@ import {
 function DinnerHome() {
   const dispatch = useDispatch();
   const favorite = useSelector((store) => store.favorite);
-  const dowList = useSelector(store => store.dowList)
-  const [heading, setHeading] = useState("Functional Component");
+  const dowList = useSelector((store) => store.dow);
+  const [dow, setDow] = useState('');
 
   useEffect(() => {
     // dispatch to get all items to display on the DOM
     dispatch({ type: "GET_FAVORITES" });
+    dispatch({ type: "GET_DOW" });
   }, []);
 
-  const handleDaySelect = () => {
-    console.log( 'Inside of handleDaySelect');
-  }
+  console.log( 'This is the DOW', dowList);
+
+  const saveDow = (id) => {
+    console.log("Inside of saveDow", id);
+    let addDow = {
+      id,
+      dow
+    }
+    dispatch({ type: 'SET_MENU_DAY', payload: addDow})
+  };
 
   return (
     <div className="dinner-container">
- 
       <Container>
         <Row xs="3">
           {favorite.map((favoriteRecipe) => {
@@ -65,12 +72,28 @@ function DinnerHome() {
                     </CardBody>
                   </Card>
                 </Col>
+                <label htmlFor="dow">Choose a Day:</label>
+                <select
+                  id="dow"
+                  name="dow"
+                  onChange={(event) => setDow(event.target.value)}
+                >
+                  {dowList.map((dow) => {
+                    return (
+                      <option key={dow.id} value={dow.dow}>
+                        {dow.dow}
+                      </option>
+                    );
+                  })}
+                </select>
+                <button onClick={() => saveDow(favoriteRecipe.id)}>
+                  save dow
+                </button>
               </>
             );
           })}
         </Row>
       </Container>
-      )
     </div>
   );
 }
