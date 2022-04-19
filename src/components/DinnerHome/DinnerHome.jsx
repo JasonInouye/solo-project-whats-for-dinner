@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Navbar,
@@ -22,12 +24,14 @@ import {
   CardBody,
   CardTitle,
   CardText,
+  Button,
   ButtonDropdown,
 } from "reactstrap";
 
 function DinnerHome() {
   const dispatch = useDispatch();
   const favorite = useSelector((store) => store.favorite);
+  const dowList = useSelector(store => store.dowList)
   const [heading, setHeading] = useState("Functional Component");
 
   useEffect(() => {
@@ -35,94 +39,33 @@ function DinnerHome() {
     dispatch({ type: "GET_FAVORITES" });
   }, []);
 
-  console.log("Logging the GET", favorite);
+  const handleDaySelect = () => {
+    console.log( 'Inside of handleDaySelect');
+  }
 
   return (
     <div className="dinner-container">
-      {/* <Navbar
-                className="navbar"
-                color="danger"
-                dark
-                expand
-                fixed="top"
-                full="true"
-                light
-            >
-                <NavbarBrand href="/">
-                    Home
-                </NavbarBrand>
-                <Collapse navbar>
-                    <Nav
-                        className="me-auto"
-                        navbar
-                    >
-                        <NavItem>
-                            <NavLink href="/components/">
-                                Search Recipes
-                            </NavLink>
-                        </NavItem>
-                        <UncontrolledDropdown
-                            inNavbar
-                            nav
-                        >
-                            <DropdownToggle
-                                caret
-                                nav
-                            >
-                                Ingredients
-                            </DropdownToggle>
-                            <DropdownMenu end>
-                                <DropdownItem>
-                                    Refrigerator
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>
-                                    Pantry
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>
-                                    Spice Rack
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                    </Nav>
-                    <NavbarText>
-                        About
-                    </NavbarText>
-                </Collapse>
-            </Navbar> */}
+ 
       <Container>
         <Row xs="3">
           {favorite.map((favoriteRecipe) => {
             console.log(favoriteRecipe);
             return (
-              <Col>
-                <Card>
-                  <CardImg src={favoriteRecipe.recipe_image} />
-                  <CardBody>
-                    <CardTitle>
-                      <p>{favoriteRecipe.recipe_name}</p>
-                    </CardTitle>
-                    <CardText>
-                      <p>This should be a description of the receipt</p>
-                    </CardText>
-                  </CardBody>
-                </Card>
-                <UncontrolledDropdown inNavbar nav>
-                  <DropdownToggle caret nav>
-                    Schedule
-                  </DropdownToggle>
-                  <DropdownMenu end>
-                    <DropdownItem>Saturday</DropdownItem>
-                    <DropdownItem>Sunday</DropdownItem>
-                    <DropdownItem>Monday</DropdownItem>
-                    <DropdownItem>Tuesday</DropdownItem>
-                    <DropdownItem>Wednesday</DropdownItem>
-                    <DropdownItem>Thursday</DropdownItem>
-                    <DropdownItem>Friday</DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </Col>
+              <>
+                <Col key={favoriteRecipe.id}>
+                  <Card>
+                    <CardImg src={favoriteRecipe.recipe_image} />
+                    <CardBody>
+                      <CardTitle>
+                        <p>{favoriteRecipe.recipe_name}</p>
+                      </CardTitle>
+                      <CardText>
+                        This should be a description of the receipt
+                      </CardText>
+                    </CardBody>
+                  </Card>
+                </Col>
+              </>
             );
           })}
         </Row>
