@@ -108,16 +108,20 @@ function DinnerHome() {
                     </CardText>
                   </CardBody>
                 </Card>
-                <ButtonDropdown toggle={function noRefCheck() {}}>
-                  <DropdownToggle caret>Day of the Week</DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
+                <UncontrolledDropdown inNavbar nav>
+                  <DropdownToggle caret nav>
+                    Schedule
+                  </DropdownToggle>
+                  <DropdownMenu end>
+                    <DropdownItem>Saturday</DropdownItem>
+                    <DropdownItem>Sunday</DropdownItem>
+                    <DropdownItem>Monday</DropdownItem>
+                    <DropdownItem>Tuesday</DropdownItem>
+                    <DropdownItem>Wednesday</DropdownItem>
+                    <DropdownItem>Thursday</DropdownItem>
+                    <DropdownItem>Friday</DropdownItem>
                   </DropdownMenu>
-                </ButtonDropdown>
+                </UncontrolledDropdown>
               </Col>
             );
           })}
