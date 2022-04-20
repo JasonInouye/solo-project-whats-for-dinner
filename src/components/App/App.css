@@ -119,3 +119,7 @@ input {
   padding: 50px;
   margin: 25px;
 }
+
+.p-day {
+  font-weight: bold;
+}
