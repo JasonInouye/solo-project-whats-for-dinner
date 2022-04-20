@@ -15,6 +15,18 @@ function* retrieveDow (){
     }   
 }
 
+function* getSchedule (){
+    
+    try {
+        const schedule = yield axios.get('/api/dow/schedule');
+        console.log('SAGA GET SCHEDULE LOG', schedule.data);
+        yield put({ type:'SET_SCHEDULE', payload: schedule.data });
+
+    } catch (err){
+        console.log('get all error', err);
+    }   
+}
+
 function* addMenuDow(action) {
     console.log( 'here is the payload for my POST', action.payload );
     try{
@@ -28,6 +40,7 @@ function* addMenuDow(action) {
 function* getDow() {
     yield takeLatest('GET_DOW', retrieveDow);
     yield takeLatest('SET_MENU_DOW', addMenuDow);
+    yield takeLatest('GET_SCHEDULE', getSchedule);
 }
 
 export default getDow;  

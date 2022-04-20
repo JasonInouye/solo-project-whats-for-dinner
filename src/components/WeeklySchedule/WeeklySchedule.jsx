@@ -1,16 +1,34 @@
-import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+function WeeklySchedule() {
+  const dispatch = useDispatch();
+  const schedule = useSelector((store) => store.dowData);
+  const [heading, setHeading] = useState("Weekly Schedule");
 
-function WeeklySchedule(props) {
+  useEffect(() => {
+    // dispatch to get all items to display on the DOM
+    dispatch({ type: "GET_SCHEDULE" });
+  }, []);
 
-  const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Weekly Schedule');
+  console.log("This is the schedule store data", schedule);
 
   return (
-    <div>
-      <h2>{heading}</h2>
-    </div>
+    <>
+      <div>
+        <h2>{heading}</h2>
+      </div>
+      <div>
+        {schedule.map((schedule) => {
+          return (
+            <>
+              <p className="p-day">Day: {schedule.dow}</p>
+              <p key={schedule.spoon_id}>{schedule.recipe_name}</p>
+            </>
+          );
+        })}
+      </div>
+    </>
   );
 }
 
