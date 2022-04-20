@@ -17,6 +17,11 @@ function* retrieveDow (){
 
 function* addMenuDow(action) {
     console.log( 'here is the payload for my POST', action.payload );
+    try{
+        yield axios.post('/api/dow', action.payload);
+    } catch(err){
+        console.log(err);
+    }
 }
 
 // This is for getting Days of The Week in the drop down in the dinnerhome component

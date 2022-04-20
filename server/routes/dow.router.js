@@ -26,12 +26,22 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   // POST route code here
   console.log( 'Inside of the DOW POST', req.body);
-  // let id = req.body.id;
-  // let dow = req.body.newDow;
 
-  // const queryText = `
-  
-  // ;`;
+  const sqlText =`
+    INSERT INTO "weekly_plan" ("spoon_id", "dow", "week_number", "user_id")
+    VALUES ($1, $2, $3, $4)
+    ;`;
+  const insertValues = [req.body.spoon_id, req.body.dow, 5, 5]
+
+  pool.query(sqlText, insertValues)
+    .then((result) => {
+      console.log('Added to menu day table', insertValues);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log( 'error in DOW POST', err);
+      res.sendStatus(500);
+    })
 });
 
 module.exports = router;

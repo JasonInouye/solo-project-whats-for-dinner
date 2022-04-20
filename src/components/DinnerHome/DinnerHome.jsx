@@ -43,10 +43,11 @@ function DinnerHome() {
   //console.log( 'This is the DOW', dowList);
 
   const saveDow = (favoriteRecipe) => {
-    console.log("Inside of saveDow", favoriteRecipe);
+    console.log("Inside of saveDow", favoriteRecipe, dow);
     let addDow = {
       id: favoriteRecipe.id,
       spoon_id: favoriteRecipe.spoon_id,
+      dow: dow
     };
     dispatch({ type: "SET_MENU_DOW", payload: addDow });
   };
