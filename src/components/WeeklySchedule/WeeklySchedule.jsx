@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 function WeeklySchedule() {
   const dispatch = useDispatch();
-  const schedule = useSelector((store) => store.dowData);
+  const schedule = useSelector((store) => store.dow);
   const [heading, setHeading] = useState("Weekly Schedule");
 
   useEffect(() => {
@@ -22,8 +22,11 @@ function WeeklySchedule() {
         {schedule.map((schedule) => {
           return (
             <>
-              <p className="p-day">Day: {schedule.dow}</p>
-              <p key={schedule.spoon_id}>{schedule.recipe_name}</p>
+              <div>
+                <p className="p-day">Day: {schedule.dow}</p>
+                <p key={schedule.spoon_id}>{schedule.recipe_name}</p>
+                <button onClick={(event) => dispatch({ type:'DELETE_SCHEDULE_RECIPE', payload: schedule.id })}>Delete</button>
+              </div>
             </>
           );
         })}

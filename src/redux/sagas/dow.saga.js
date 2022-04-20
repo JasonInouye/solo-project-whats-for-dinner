@@ -36,11 +36,23 @@ function* addMenuDow(action) {
     }
 }
 
+function* deleteScheduleRecipe(action) {
+    console.log( 'LOG FROM DELETE SAGA', action.payload);
+    try {
+        yield axios.delete(`/api/dow/${action.payload}`)
+        yield put({ type: 'GET_SCHEDULE' })
+    } catch(err) {
+        console.log(err);
+    }
+}
+
 // This is for getting Days of The Week in the drop down in the dinnerhome component
 function* getDow() {
     yield takeLatest('GET_DOW', retrieveDow);
     yield takeLatest('SET_MENU_DOW', addMenuDow);
     yield takeLatest('GET_SCHEDULE', getSchedule);
+    yield takeLatest('DELETE_SCHEDULE_RECIPE', deleteScheduleRecipe);
 }
+
 
 export default getDow;  
