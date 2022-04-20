@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Navbar,
@@ -22,108 +24,75 @@ import {
   CardBody,
   CardTitle,
   CardText,
+  Button,
   ButtonDropdown,
 } from "reactstrap";
 
 function DinnerHome() {
   const dispatch = useDispatch();
   const favorite = useSelector((store) => store.favorite);
-  const [heading, setHeading] = useState("Functional Component");
+  const dowList = useSelector((store) => store.dow);
+  const [dow, setDow] = useState("");
 
   useEffect(() => {
     // dispatch to get all items to display on the DOM
     dispatch({ type: "GET_FAVORITES" });
+    dispatch({ type: "GET_DOW" });
   }, []);
 
-  console.log("Logging the GET", favorite);
+  //console.log( 'This is the DOW', dowList);
+
+  const saveDow = (favoriteRecipe) => {
+    console.log("Inside of saveDow", favoriteRecipe, dow);
+    let addDow = {
+      id: favoriteRecipe.id,
+      spoon_id: favoriteRecipe.spoon_id,
+      dow: dow
+    };
+    dispatch({ type: "SET_MENU_DOW", payload: addDow });
+  };
 
   return (
     <div className="dinner-container">
-      {/* <Navbar
-                className="navbar"
-                color="danger"
-                dark
-                expand
-                fixed="top"
-                full="true"
-                light
-            >
-                <NavbarBrand href="/">
-                    Home
-                </NavbarBrand>
-                <Collapse navbar>
-                    <Nav
-                        className="me-auto"
-                        navbar
-                    >
-                        <NavItem>
-                            <NavLink href="/components/">
-                                Search Recipes
-                            </NavLink>
-                        </NavItem>
-                        <UncontrolledDropdown
-                            inNavbar
-                            nav
-                        >
-                            <DropdownToggle
-                                caret
-                                nav
-                            >
-                                Ingredients
-                            </DropdownToggle>
-                            <DropdownMenu end>
-                                <DropdownItem>
-                                    Refrigerator
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>
-                                    Pantry
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>
-                                    Spice Rack
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                    </Nav>
-                    <NavbarText>
-                        About
-                    </NavbarText>
-                </Collapse>
-            </Navbar> */}
       <Container>
         <Row xs="3">
           {favorite.map((favoriteRecipe) => {
-            console.log(favoriteRecipe);
+            //console.log(favoriteRecipe);
             return (
-              <Col>
-                <Card>
-                  <CardImg src={favoriteRecipe.recipe_image} />
-                  <CardBody>
-                    <CardTitle>
-                      <p>{favoriteRecipe.recipe_name}</p>
-                    </CardTitle>
-                    <CardText>
-                      <p>This should be a description of the receipt</p>
-                    </CardText>
-                  </CardBody>
-                </Card>
-                <ButtonDropdown toggle={function noRefCheck() {}}>
-                  <DropdownToggle caret>Day of the Week</DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
-                  </DropdownMenu>
-                </ButtonDropdown>
-              </Col>
+              <>
+                <Col key={favoriteRecipe.id}>
+                  <Card>
+                    <CardImg src={favoriteRecipe.recipe_image} />
+                    <CardBody>
+                      <CardTitle>
+                        <p>{favoriteRecipe.recipe_name}</p>
+                      </CardTitle>
+                      <CardText>
+                        <select
+                          id="dow"
+                          name="dow"
+                          onChange={(event) => setDow(event.target.value)}
+                        >
+                          {dowList.map((dow) => {
+                            return (
+                              <option key={dow.id} value={dow.dow}>
+                                {dow.dow}
+                              </option>
+                            );
+                          })}
+                        </select>
+                        <button onClick={() => saveDow(favoriteRecipe)}>
+                          Add Day
+                        </button>
+                      </CardText>
+                    </CardBody>
+                  </Card>
+                </Col>
+              </>
             );
           })}
         </Row>
       </Container>
-      )
     </div>
   );
 }
