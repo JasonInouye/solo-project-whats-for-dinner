@@ -40,6 +40,10 @@ function Nav() {
               Schedule
             </Link>
 
+            <Link className="navLink" to="/recipeDetails">
+              Recipe Details
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}
