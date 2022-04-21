@@ -21,19 +21,20 @@ function* getRefrigerator (){
 //     }
 // }
 
-// function* deleteScheduleRecipe(action) {
-//     console.log( 'LOG FROM DELETE SAGA', action.payload);
-//     try {
-//         yield axios.delete(`/api/dow/${action.payload}`)
-//         yield put({ type: 'GET_SCHEDULE' })
-//     } catch(err) {
-//         console.log(err);
-//     }
-// }
+function* deleteIngredient(action) {
+    console.log( 'LOG FROM DELETE INGREDIENT SAGA', action.payload);
+    try {
+        yield axios.delete(`/api/ingredients/${action.payload}`)
+        yield put({ type: 'GET_REFRIGERATOR' })
+    } catch(err) {
+        console.log(err);
+    }
+}
 
 // This is for getting Ingredients for the refrigerator, pantry, spice
 function* getIngredients() {
     yield takeLatest('GET_REFRIGERATOR', getRefrigerator);
+    yield takeLatest('DELETE_INGREDIENT', deleteIngredient);
 }
 
 export default getIngredients;  
