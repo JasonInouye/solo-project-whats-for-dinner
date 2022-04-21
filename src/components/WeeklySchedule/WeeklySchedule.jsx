@@ -11,7 +11,7 @@ function WeeklySchedule() {
     dispatch({ type: "GET_SCHEDULE" });
   }, []);
 
-  console.log("This is the schedule store data", schedule);
+  //console.log("This is the schedule store data", schedule);
 
   return (
     <>

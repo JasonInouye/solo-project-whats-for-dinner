@@ -10,7 +10,7 @@ router.get('/refrigerator', (req, res) => {
     *
   FROM "ingredients_instock"
   WHERE UPPER("location") = 'REFRIGERATOR'
-  ORDER by a."ingredients"
+  ORDER by "ingredient"
   ;`;
   pool.query(query)
   .then( result => {

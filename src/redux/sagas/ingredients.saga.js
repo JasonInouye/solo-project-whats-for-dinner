@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* getRefrigerator (){
     try {
-        const refrigerator = yield axios.get('/api/dow/ingredients/refrigerator');
+        const refrigerator = yield axios.get('/api/ingredients/refrigerator');
         console.log('SAGA GET REFRIGERATOR LOG', refrigerator.data);
         yield put({ type:'SET_REFRIGERATOR', payload: refrigerator.data });
 

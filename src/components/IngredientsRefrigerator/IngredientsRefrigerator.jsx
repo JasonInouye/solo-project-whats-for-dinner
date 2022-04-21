@@ -3,13 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 
 function IngredientsRefrigerator() {
   const dispatch = useDispatch();
-  const schedule = useSelector((store) => store.dow);
+  const refrigerator = useSelector((store) => store.dow);
   const [heading, setHeading] = useState("Weekly Schedule");
 
   useEffect(() => {
     // dispatch to get all items to display on the DOM
     dispatch({ type: "GET_REFRIGERATOR" });
   }, []);
+
+  console.log( 'this is the REFRIGERATOR details', refrigerator );
 
   return (
     <>

@@ -3,7 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import favorite from './dinner.get.reducers' // this reducer is for favorite list. Poor naming choice lol. 
 import dow from './dow.get.reducers'
-import ingredient from './ingredients.reducer'
+import ingredients from './ingredients.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   favorite,
   dow,
-  ingredient,
+  ingredients,
 });
 
 export default rootReducer;
