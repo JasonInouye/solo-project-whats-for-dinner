@@ -3,60 +3,34 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /** GET ROUTE **/
-router.get('/', (req, res) => {
+router.get('/refrigerator', (req, res) => {
   // GET route code here
   const query = `
   SELECT 
-    a.dow
-  FROM "dow" a
-  ORDER by a."id" ASC
+    *
+  FROM "ingredients_instock"
+  WHERE UPPER("location") = 'REFRIGERATOR'
+  ORDER by "ingredient"
   ;`;
   pool.query(query)
   .then( result => {
     res.send(result.rows);
   })
   .catch( err => {
-    console.log( 'ERROR in DOW ROUTER GET', err );
+    console.log( 'ERROR in Refrigerator ROUTER GET', err );
   })
 });
 
-router.get('/schedule', (req, res) => {
-  // GET route code here
-  const query = `
-  SELECT
-    a."id",
-    a."spoon_id",
-    a."dow",
-    a."user_id",
-    b."recipe_name",
-    b."recipe_image"
-  FROM "weekly_plan" a, "recipes" b, "dow" c
-  WHERE a."spoon_id" = b."spoon_id"
-  AND a."dow" = c."dow"
-  ORDER BY c."id"
-  ;`;
-  pool.query(query)
-  .then( result => {
-    //console.log( 'This is the log for /schedule', result.rows);
-    res.send(result.rows);
-  })
-  .catch( err => {
-    console.log( 'ERROR in SCHEDULE ROUTER GET', err );
-  })
-});
-
-/**
- * POST route template
- */
+/** POST **/
 router.post('/', (req, res) => {
   // POST route code here
-  console.log( 'Inside of the DOW POST', req.body);
+  console.log( 'Inside of the INGREDIENT POST', req.body);
 
   const sqlText =`
-    INSERT INTO "weekly_plan" ("spoon_id", "dow", "week_number", "user_id")
-    VALUES ($1, $2, $3, $4)
+    INSERT INTO "ingredients_instock" ("ingredient", "location", "user_id")
+    VALUES ($1, $2, $3)
     ;`;
-  const insertValues = [req.body.spoon_id, req.body.dow, 5, req.user.id]
+  const insertValues = [req.body.ingredient, req.body.location, req.user.id]
 
   pool.query(sqlText, insertValues)
     .then((result) => {
@@ -69,10 +43,11 @@ router.post('/', (req, res) => {
     });
 });
 
+/** DELETE **/
 router.delete ('/:id', (req,res) => {
   console.log( 'log from delete',req.params.id, req.user.id, req.user );
   const queryText = `
-  DELETE FROM "weekly_plan"
+  DELETE FROM "ingredients_instock"
   WHERE "user_id" = $1 AND
   "id" = $2
   ;`;
