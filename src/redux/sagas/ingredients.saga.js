@@ -12,14 +12,14 @@ function* getRefrigerator (){
     }   
 }
 
-// function* addMenuDow(action) {
-//     console.log( 'here is the payload for my POST', action.payload );
-//     try{
-//         yield axios.post('/api/dow', action.payload);
-//     } catch(err){
-//         console.log(err);
-//     }
-// }
+function* addIngredient(action) {
+    console.log( 'here is the payload for my Add Ingredient', action.payload );
+    try{
+        yield axios.post('/api/ingredient', action.payload);
+    } catch(err){
+        console.log(err);
+    }
+}
 
 function* deleteIngredient(action) {
     console.log( 'LOG FROM DELETE INGREDIENT SAGA', action.payload);
@@ -35,6 +35,7 @@ function* deleteIngredient(action) {
 function* getIngredients() {
     yield takeLatest('GET_REFRIGERATOR', getRefrigerator);
     yield takeLatest('DELETE_INGREDIENT', deleteIngredient);
+    yield takeLatest('ADD_REF_ITEM', addIngredient);
 }
 
 export default getIngredients;  

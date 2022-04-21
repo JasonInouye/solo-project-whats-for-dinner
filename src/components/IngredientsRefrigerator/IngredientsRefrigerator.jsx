@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 function IngredientsRefrigerator() {
   const dispatch = useDispatch();
   const refrigerator = useSelector((store) => store.ingredients);
-  const [newRefrigeratorItem, setNewRefrigeratorItem] = useState('');
+  const [newRefrigeratorItem, setNewRefrigeratorItem] = useState({ ingredient: '', location: 'Refrigerator' });
 
   useEffect(() => {
     // dispatch to get all items to display on the DOM
@@ -12,7 +12,7 @@ function IngredientsRefrigerator() {
   }, []);
 
   const handleIngredientItem = (event) => {
-    setNewRefrigeratorItem(event.target.value);
+    setNewRefrigeratorItem({...newRefrigeratorItem, ingredient: event.target.value,});
   }
 
   //console.log("this is the REFRIGERATOR details", refrigerator);
@@ -20,13 +20,14 @@ function IngredientsRefrigerator() {
       event.preventDefault();
       console.log( 'Clicked SUBMIT Button');
       dispatch({ type: 'ADD_REF_ITEM', payload: newRefrigeratorItem });
+      setNewRefrigeratorItem({ ingredient:'', price:'' })
   };
 
   return (
     <>
       <h1>Refrigerator Ingredients</h1>
       <form>
-        <input type="text" placeholder="Add Ingredient" value={newRefrigeratorItem} onChange={handleIngredientItem}/>
+        <input type="text" placeholder="Add Ingredient" value={newRefrigeratorItem.ingredient} onChange={handleIngredientItem}/>
         <button onClick={addIngredient}>Submit</button>
       </form>
       <div>
