@@ -44,6 +44,10 @@ function Nav() {
               Recipe Details
             </Link>
 
+            <Link className="navLink" to="/recipeDetails">
+              Refrigerator
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}

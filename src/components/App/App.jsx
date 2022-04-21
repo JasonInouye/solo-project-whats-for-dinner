@@ -96,6 +96,14 @@ function App() {
             <RecipeDetails />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/ingredients/refrigerator"
+          >
+            <RecipeDetails />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
