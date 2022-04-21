@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {Link} from 'react-router-dom';
 import {
   Navbar,
   NavbarBrand,
@@ -62,6 +63,7 @@ function DinnerHome() {
               <>
                 <Col key={favoriteRecipe.id}>
                   <Card>
+                    <Link to={"/recipeDetails/"+ favoriteRecipe.spoon_id}>
                     <CardImg src={favoriteRecipe.recipe_image} />
                     <CardBody>
                       <CardTitle>
@@ -86,6 +88,7 @@ function DinnerHome() {
                         </button>
                       </CardText>
                     </CardBody>
+                    </Link>
                   </Card>
                 </Col>
               </>
