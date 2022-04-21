@@ -21,8 +21,10 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import DinnerHome from '../DinnerHome/DinnerHome';
 import WeeklySchedule from '../WeeklySchedule/WeeklySchedule';
+import RecipeDetails from '../RecipeDetails/RecipeDetails';
 
 import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -84,6 +86,14 @@ function App() {
             path="/schedule"
           >
             <WeeklySchedule />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/recipeDetails/:id"
+          >
+            <RecipeDetails />
           </ProtectedRoute>
 
           <Route
