@@ -21,6 +21,29 @@ router.get('/refrigerator', (req, res) => {
   })
 });
 
+/** POST **/
+router.post('/', (req, res) => {
+  // POST route code here
+  console.log( 'Inside of the INGREDIENT POST', req.body);
+
+  const sqlText =`
+    INSERT INTO "ingredients_instock" ("ingredient", "location", "user_id")
+    VALUES ($1, $2, $3)
+    ;`;
+  const insertValues = [req.body.ingredient, req.body.location, req.user.id]
+
+  pool.query(sqlText, insertValues)
+    .then((result) => {
+      console.log('Added to menu day table', insertValues);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log( 'error in DOW POST', err);
+      res.sendStatus(500);
+    });
+});
+
+/** DELETE **/
 router.delete ('/:id', (req,res) => {
   console.log( 'log from delete',req.params.id, req.user.id, req.user );
   const queryText = `

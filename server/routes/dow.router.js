@@ -56,7 +56,7 @@ router.post('/', (req, res) => {
     INSERT INTO "weekly_plan" ("spoon_id", "dow", "week_number", "user_id")
     VALUES ($1, $2, $3, $4)
     ;`;
-  const insertValues = [req.body.spoon_id, req.body.dow, 5, 5]
+  const insertValues = [req.body.spoon_id, req.body.dow, 5, req.user.id]
 
   pool.query(sqlText, insertValues)
     .then((result) => {

@@ -18,9 +18,8 @@ function IngredientsRefrigerator() {
   //console.log("this is the REFRIGERATOR details", refrigerator);
   const addIngredient = (event) => {
       event.preventDefault();
-      console.log( 'Clicked SUBMIT Button');
       dispatch({ type: 'ADD_REF_ITEM', payload: newRefrigeratorItem });
-      setNewRefrigeratorItem({ ingredient:'', price:'' })
+      setNewRefrigeratorItem({ ingredient:'', location:'Refrigerator' })
   };
 
   return (

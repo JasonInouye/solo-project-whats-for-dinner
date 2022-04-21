@@ -15,7 +15,8 @@ function* getRefrigerator (){
 function* addIngredient(action) {
     console.log( 'here is the payload for my Add Ingredient', action.payload );
     try{
-        yield axios.post('/api/ingredient', action.payload);
+        yield axios.post('/api/ingredients', action.payload);
+        yield put({ type: 'GET_REFRIGERATOR' })
     } catch(err){
         console.log(err);
     }
