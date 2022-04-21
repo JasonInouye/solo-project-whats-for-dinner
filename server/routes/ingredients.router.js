@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /** GET ROUTE **/
-router.get('/', (req, res) => {
+router.get('/refrigerator', (req, res) => {
   // GET route code here
   const query = `
   SELECT 

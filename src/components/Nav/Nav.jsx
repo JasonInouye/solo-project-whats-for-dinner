@@ -44,7 +44,7 @@ function Nav() {
               Recipe Details
             </Link>
 
-            <Link className="navLink" to="/recipeDetails">
+            <Link className="navLink" to="/ingredients/refrigerator">
               Refrigerator
             </Link>
 

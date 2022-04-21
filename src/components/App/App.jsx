@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import DinnerHome from '../DinnerHome/DinnerHome';
 import WeeklySchedule from '../WeeklySchedule/WeeklySchedule';
 import RecipeDetails from '../RecipeDetails/RecipeDetails';
+import IngredientsRefrigerator from '../IngredientsRefrigerator/IngredientsRefrigerator';
 
 import './App.css';
 
@@ -101,7 +102,7 @@ function App() {
             exact
             path="/ingredients/refrigerator"
           >
-            <RecipeDetails />
+            <IngredientsRefrigerator />
           </ProtectedRoute>
 
           <Route
