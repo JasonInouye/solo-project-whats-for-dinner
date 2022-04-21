@@ -65,6 +65,7 @@ function DinnerHome() {
                   <Card>
                     <Link to={"/recipeDetails/"+ favoriteRecipe.spoon_id}>
                     <CardImg src={favoriteRecipe.recipe_image} />
+                    </Link>
                     <CardBody>
                       <CardTitle>
                         <p>{favoriteRecipe.recipe_name}</p>
@@ -88,7 +89,6 @@ function DinnerHome() {
                         </button>
                       </CardText>
                     </CardBody>
-                    </Link>
                   </Card>
                 </Col>
               </>
