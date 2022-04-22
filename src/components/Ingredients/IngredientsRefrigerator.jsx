@@ -17,7 +17,6 @@ function IngredientsRefrigerator() {
     setNewRefrigeratorItem({...newRefrigeratorItem, ingredient: event.target.value,});
   }
 
-  console.log("this is the REFRIGERATOR details", refrigerator);
   const addIngredient = (event) => {
       event.preventDefault();
       dispatch({ type: 'ADD_REF_ITEM', payload: newRefrigeratorItem });

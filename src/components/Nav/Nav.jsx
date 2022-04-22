@@ -10,7 +10,7 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <h2 className="nav-title">What's For Dinner?</h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
@@ -33,7 +33,11 @@ function Nav() {
             </Link>
 
             <Link className="navLink" to="/favorite">
-              Favorite Recipes
+              Saved Recipes
+            </Link>
+
+            <Link className="navLink" to="/search">
+              Single Search
             </Link>
 
             <Link className="navLink" to="/schedule">
@@ -46,6 +50,14 @@ function Nav() {
 
             <Link className="navLink" to="/ingredients/refrigerator">
               Refrigerator
+            </Link>
+
+            <Link className="navLink" to="/ingredients/pantry">
+              Pantry
+            </Link>
+
+            <Link className="navLink" to="/ingredients/spices">
+              Spices
             </Link>
 
             <LogOutButton className="navLink" />

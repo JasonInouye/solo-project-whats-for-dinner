@@ -1,5 +1,5 @@
 const editIngredient = (state  = {}, action) => {
-    console.log( 'ThiS IS THE EDIT REDUCER', action.payload);
+    //console.log( 'ThiS IS THE EDIT REDUCER', action.payload);
     if(action.type == 'SET_EDIT_INGREDIENT') {
         return action.payload;
     } else if (action.type == 'EDIT_ONCHANGE') {

@@ -22,9 +22,12 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import DinnerHome from '../DinnerHome/DinnerHome';
 import WeeklySchedule from '../WeeklySchedule/WeeklySchedule';
 import RecipeDetails from '../RecipeDetails/RecipeDetails';
-import IngredientsRefrigerator from '../IngredientsRefrigerator/IngredientsRefrigerator';
-import EditIngredient from '../IngredientsRefrigerator/EditIngredient';
-
+import IngredientsRefrigerator from '../Ingredients/IngredientsRefrigerator';
+import EditIngredient from '../Ingredients/EditIngredient';
+import IngredientsPantry  from '../Ingredients/IngredientsPantry'
+import IngredientsSpices  from '../Ingredients/IngredientsSpices'
+import SingleSearch from '../SingleSearch/SingleSearch';
+import SingleSearchResults from '../SingleSearch/SingleSearchResults';
 import './App.css';
 
 
@@ -85,6 +88,22 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
+            path="/search"
+          >
+            <SingleSearch />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/search/:searchItem"
+          >
+            <SingleSearchResults />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
             path="/schedule"
           >
             <WeeklySchedule />
@@ -104,6 +123,22 @@ function App() {
             path="/ingredients/refrigerator"
           >
             <IngredientsRefrigerator />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/ingredients/pantry"
+          >
+            <IngredientsPantry />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/ingredients/spices"
+          >
+            <IngredientsSpices />
           </ProtectedRoute>
 
           <ProtectedRoute
