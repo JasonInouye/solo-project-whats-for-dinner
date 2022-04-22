@@ -36,6 +36,10 @@ function Nav() {
               Favorite Recipes
             </Link>
 
+            <Link className="navLink" to="/search">
+              Single Search
+            </Link>
+
             <Link className="navLink" to="/schedule">
               Schedule
             </Link>

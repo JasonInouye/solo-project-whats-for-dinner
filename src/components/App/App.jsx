@@ -26,6 +26,7 @@ import IngredientsRefrigerator from '../Ingredients/IngredientsRefrigerator';
 import EditIngredient from '../Ingredients/EditIngredient';
 import IngredientsPantry  from '../Ingredients/IngredientsPantry'
 import IngredientsSpices  from '../Ingredients/IngredientsSpices'
+import SingleSearch from '../SingleSearch/SingleSearch';
 import './App.css';
 
 
@@ -81,6 +82,14 @@ function App() {
             path="/favorite"
           >
             <DinnerHome />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/search"
+          >
+            <SingleSearch />
           </ProtectedRoute>
 
           <ProtectedRoute
