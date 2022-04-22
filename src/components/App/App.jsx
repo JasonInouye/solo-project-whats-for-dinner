@@ -27,6 +27,7 @@ import EditIngredient from '../Ingredients/EditIngredient';
 import IngredientsPantry  from '../Ingredients/IngredientsPantry'
 import IngredientsSpices  from '../Ingredients/IngredientsSpices'
 import SingleSearch from '../SingleSearch/SingleSearch';
+import SingleSearchResults from '../SingleSearch/SingleSearchResults';
 import './App.css';
 
 
@@ -90,6 +91,14 @@ function App() {
             path="/search"
           >
             <SingleSearch />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/search/:searchItem"
+          >
+            <SingleSearchResults />
           </ProtectedRoute>
 
           <ProtectedRoute
