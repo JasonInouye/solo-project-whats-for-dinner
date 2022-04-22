@@ -19,7 +19,7 @@ function IngredientsSpices() {
 
   const addIngredient = (event) => {
       event.preventDefault();
-      dispatch({ type: 'ADD_REF_ITEM', payload: newSpicesItem });
+      dispatch({ type: 'ADD_SPICES_ITEM', payload: newSpicesItem });
       setNewSpicesItem({ ingredient:'', location:'Spices' })
   };
 

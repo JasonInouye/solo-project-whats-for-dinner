@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/** GET ROUTE **/
+/** GET ROUTES **/
 router.get('/refrigerator', (req, res) => {
   // GET route code here
   const query = `
@@ -18,6 +18,42 @@ router.get('/refrigerator', (req, res) => {
   })
   .catch( err => {
     console.log( 'ERROR in Refrigerator ROUTER GET', err );
+  })
+});
+
+router.get('/pantry', (req, res) => {
+  // GET route code here
+  const query = `
+  SELECT 
+    *
+  FROM "ingredients_instock"
+  WHERE UPPER("location") = 'PANTRY'
+  ORDER by "ingredient"
+  ;`;
+  pool.query(query)
+  .then( result => {
+    res.send(result.rows);
+  })
+  .catch( err => {
+    console.log( 'ERROR in Pantry ROUTER GET', err );
+  })
+});
+
+router.get('/spices', (req, res) => {
+  // GET route code here
+  const query = `
+  SELECT 
+    *
+  FROM "ingredients_instock"
+  WHERE UPPER("location") = 'SPICES'
+  ORDER by "ingredient"
+  ;`;
+  pool.query(query)
+  .then( result => {
+    res.send(result.rows);
+  })
+  .catch( err => {
+    console.log( 'ERROR in spices ROUTER GET', err );
   })
 });
 

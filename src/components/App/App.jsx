@@ -24,7 +24,8 @@ import WeeklySchedule from '../WeeklySchedule/WeeklySchedule';
 import RecipeDetails from '../RecipeDetails/RecipeDetails';
 import IngredientsRefrigerator from '../Ingredients/IngredientsRefrigerator';
 import EditIngredient from '../Ingredients/EditIngredient';
-
+import IngredientsPantry  from '../Ingredients/IngredientsPantry'
+import IngredientsSpices  from '../Ingredients/IngredientsSpices'
 import './App.css';
 
 
@@ -111,7 +112,7 @@ function App() {
             exact
             path="/ingredients/pantry"
           >
-            <IngredientsRefrigerator />
+            <IngredientsPantry />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -119,7 +120,7 @@ function App() {
             exact
             path="/ingredients/spices"
           >
-            <IngredientsRefrigerator />
+            <IngredientsSpices />
           </ProtectedRoute>
 
           <ProtectedRoute

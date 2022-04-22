@@ -32,10 +32,23 @@ function* getSpices (){
 }
 
 function* addIngredient(action) {
-    //console.log( 'here is the payload for my Add Ingredient', action.payload );
+    // console.log( 'here is the payload for my Add Ingredient', action.payload );
+    // let type = '';
+    // if (action.payload.location == 'Refrigerator') {
+    //     return type = 'GET_REFRIGERATOR'
+    // } else if (action.payload.location == 'Pantry') {
+    //     return type = 'GET_PANTRY'
+    // } else if (action.payload.location == 'Spices') {
+    //     return type = 'GET_SPICES'
+    // }
+
+    // console.log( "this is the TYPE", type);
+
     try{
         yield axios.post('/api/ingredients', action.payload);
         yield put({ type: 'GET_REFRIGERATOR' })
+        yield put({ type: 'GET_PANTRY' })
+        yield put({ type: 'GET_SPICES' })
     } catch(err){
         console.log(err);
     }
@@ -58,6 +71,8 @@ function* getIngredients() {
     yield takeLatest('GET_SPICES', getSpices);
     yield takeLatest('DELETE_INGREDIENT', deleteIngredient);
     yield takeLatest('ADD_REF_ITEM', addIngredient);
+    yield takeLatest('ADD_PANTRY_ITEM', addIngredient);
+    yield takeLatest('ADD_SPICES_ITEM', addIngredient);
 }
 
 export default getIngredients;  

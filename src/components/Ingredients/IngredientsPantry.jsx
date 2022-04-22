@@ -18,8 +18,9 @@ function IngredientsPantry() {
   }
 
   const addIngredient = (event) => {
+    console.log( 'does this work', newPantryItem);
       event.preventDefault();
-      dispatch({ type: 'ADD_REF_ITEM', payload: newPantryItem });
+      dispatch({ type: 'ADD_PANTRY_ITEM', payload: newPantryItem });
       setNewPantryItem({ ingredient:'', location:'Pantry' })
   };
 
