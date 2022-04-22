@@ -44,9 +44,9 @@ function Nav() {
               Schedule
             </Link>
 
-            <Link className="navLink" to="/recipeDetails">
+            {/* <Link className="navLink" to="/recipeDetails">
               Recipe Details
-            </Link>
+            </Link> */}
 
             <Link className="navLink" to="/ingredients/refrigerator">
               Refrigerator
