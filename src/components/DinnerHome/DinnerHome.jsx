@@ -44,7 +44,6 @@ function DinnerHome() {
           {favorite.map((favoriteRecipe) => {
             //console.log(favoriteRecipe);
             return (
-              <>
               <div  key={favoriteRecipe.id}>
                 <Col>
                   <Card>
@@ -77,7 +76,6 @@ function DinnerHome() {
                   </Card>
                 </Col>
                 </div>
-              </>
             );
           })}
         </Row>
