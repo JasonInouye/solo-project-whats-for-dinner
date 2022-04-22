@@ -31,12 +31,12 @@ function SingleSearchResults() {
       {searchedRecipes.map((item) => {
         console.log("this is the item", item);
         return (
-          <>
+          <div key={item.id}>
+            <h2>{item.title}</h2>
             <Link to={"/recipeDetails/" + item.id}>
               <img src={item.image} alt="RecipeImage" />
             </Link>
-            <h2>{item.title}</h2>
-          </>
+          </div>
         );
       })}
     </>

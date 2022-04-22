@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 
 function IngredientsSpices() {
@@ -10,7 +10,7 @@ function IngredientsSpices() {
 
   useEffect(() => {
     // dispatch to get all items to display on the DOM
-    dispatch({ type: "GET_SPICES" });
+    dispatch({ type: 'GET_SPICES' });
   }, []);
 
   const handleIngredientItem = (event) => {
@@ -42,7 +42,7 @@ function IngredientsSpices() {
             return (
               <div key={item.id}>
                 <li>{item.ingredient}</li>
-                <button onClick={(event) => dispatch({ type: "DELETE_INGREDIENT", payload: item.id })}>
+                <button onClick={(event) => dispatch({ type: 'DELETE_SPICE', payload: item.id })}>
                   Delete
                 </button>
                 <button onClick={() => handleEdit(item)}>Edit</button>

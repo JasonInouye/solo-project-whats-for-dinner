@@ -4,7 +4,6 @@ import { put, takeLatest } from 'redux-saga/effects';
 //get all Days of the week from the DB 
 // for drop down on various components
 function* retrieveDow (){
-    
     try {
         const dow = yield axios.get('/api/dow');
         //console.log('SAGA GET DOW LOG', dow.data);

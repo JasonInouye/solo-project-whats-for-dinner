@@ -1,22 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Link} from 'react-router-dom';
 import {
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  Collapse,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  Nav,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
   Container,
   Row,
   Col,
@@ -25,8 +11,6 @@ import {
   CardBody,
   CardTitle,
   CardText,
-  Button,
-  ButtonDropdown,
 } from "reactstrap";
 
 function DinnerHome() {
@@ -61,7 +45,8 @@ function DinnerHome() {
             //console.log(favoriteRecipe);
             return (
               <>
-                <Col key={favoriteRecipe.id}>
+              <div  key={favoriteRecipe.id}>
+                <Col>
                   <Card>
                     <Link to={"/recipeDetails/"+ favoriteRecipe.spoon_id}>
                     <CardImg src={favoriteRecipe.recipe_image} />
@@ -91,6 +76,7 @@ function DinnerHome() {
                     </CardBody>
                   </Card>
                 </Col>
+                </div>
               </>
             );
           })}

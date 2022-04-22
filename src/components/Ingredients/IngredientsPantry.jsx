@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 
 function IngredientsPantry() {
@@ -10,7 +10,7 @@ function IngredientsPantry() {
 
   useEffect(() => {
     // dispatch to get all items to display on the DOM
-    dispatch({ type: "GET_PANTRY" });
+    dispatch({ type: 'GET_PANTRY' });
   }, []);
 
   const handleIngredientItem = (event) => {
@@ -18,14 +18,12 @@ function IngredientsPantry() {
   }
 
   const addIngredient = (event) => {
-    console.log( 'does this work', newPantryItem);
       event.preventDefault();
       dispatch({ type: 'ADD_PANTRY_ITEM', payload: newPantryItem });
       setNewPantryItem({ ingredient:'', location:'Pantry' })
   };
 
   const handleEdit = (item) => {
-      console.log( 'inside of handleEdit', item);
       dispatch({type: 'SET_EDIT_INGREDIENT', payload: item});
       history.push(`/edit/${item.id}`);
   }
@@ -43,7 +41,7 @@ function IngredientsPantry() {
             return (
               <div key={item.id}>
                 <li>{item.ingredient}</li>
-                <button onClick={(event) => dispatch({ type: "DELETE_INGREDIENT", payload: item.id })}>
+                <button onClick={(event) => dispatch({ type: "DELETE_PANTRY", payload: item.id })}>
                   Delete
                 </button>
                 <button onClick={() => handleEdit(item)}>Edit</button>

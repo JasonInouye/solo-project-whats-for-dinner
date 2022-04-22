@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   SELECT 
     a.dow
   FROM "dow" a
-  ORDER by a."id" ASC
+  ORDER by a."order_column" ASC
   ;`;
   pool.query(query)
   .then( result => {
