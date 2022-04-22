@@ -23,6 +23,7 @@ import DinnerHome from '../DinnerHome/DinnerHome';
 import WeeklySchedule from '../WeeklySchedule/WeeklySchedule';
 import RecipeDetails from '../RecipeDetails/RecipeDetails';
 import IngredientsRefrigerator from '../IngredientsRefrigerator/IngredientsRefrigerator';
+import EditIngredient from '../IngredientsRefrigerator/EditIngredient';
 
 import './App.css';
 
@@ -103,6 +104,14 @@ function App() {
             path="/ingredients/refrigerator"
           >
             <IngredientsRefrigerator />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/edit/:id"
+          >
+            <EditIngredient />
           </ProtectedRoute>
 
           <Route
