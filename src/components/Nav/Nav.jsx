@@ -48,6 +48,14 @@ function Nav() {
               Refrigerator
             </Link>
 
+            <Link className="navLink" to="/ingredients/pantry">
+              Pantry
+            </Link>
+
+            <Link className="navLink" to="/ingredients/spices">
+              Spices
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}

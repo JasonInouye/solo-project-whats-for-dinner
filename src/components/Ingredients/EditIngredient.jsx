@@ -41,8 +41,6 @@ function EditIngredient() {
             })
         };
         
-
-
       return (
         <>
           <h2>Edit Ingredient</h2>

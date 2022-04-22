@@ -109,6 +109,22 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
+            path="/ingredients/pantry"
+          >
+            <IngredientsRefrigerator />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/ingredients/spices"
+          >
+            <IngredientsRefrigerator />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
             path="/edit/:id"
           >
             <EditIngredient />
