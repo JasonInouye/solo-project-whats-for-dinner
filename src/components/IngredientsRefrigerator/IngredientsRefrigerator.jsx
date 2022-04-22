@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom'
 
 function IngredientsRefrigerator() {
   const dispatch = useDispatch();
   const refrigerator = useSelector((store) => store.ingredients);
+  const history = useHistory();
   const [newRefrigeratorItem, setNewRefrigeratorItem] = useState({ ingredient: '', location: 'Refrigerator' });
 
   useEffect(() => {
@@ -15,12 +17,18 @@ function IngredientsRefrigerator() {
     setNewRefrigeratorItem({...newRefrigeratorItem, ingredient: event.target.value,});
   }
 
-  //console.log("this is the REFRIGERATOR details", refrigerator);
+  console.log("this is the REFRIGERATOR details", refrigerator);
   const addIngredient = (event) => {
       event.preventDefault();
       dispatch({ type: 'ADD_REF_ITEM', payload: newRefrigeratorItem });
       setNewRefrigeratorItem({ ingredient:'', location:'Refrigerator' })
   };
+
+  const handleEdit = (item) => {
+      console.log( 'inside of handleEdit', item);
+      dispatch({type: 'SET_EDIT_INGREDIENT', payload: item});
+      history.push(`/edit/${item.id}`);
+  }
 
   return (
     <>
@@ -38,7 +46,7 @@ function IngredientsRefrigerator() {
                 <button onClick={(event) => dispatch({ type: "DELETE_INGREDIENT", payload: item.id })}>
                   Delete
                 </button>
-                <button>Update</button>
+                <button onClick={() => handleEdit(item)}>Edit</button>
               </div>
             );
           })}
