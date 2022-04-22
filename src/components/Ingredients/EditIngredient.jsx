@@ -32,7 +32,9 @@ function EditIngredient() {
                 // clean up reducer data            
                 dispatch({ type: 'EDIT_CLEAR' });
                 // refresh will happen with useEffect on Home
-                history.push('/'); // back to list
+                // location is one of the three ingredient locations
+                // allows us to reuse the edit function for all three locations
+                history.push(`/ingredients/${editIngredient.location}`); // back to list
             })
             .catch(error => {
                 console.log('error on PUT: ', error);
