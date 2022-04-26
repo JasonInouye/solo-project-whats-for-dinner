@@ -44,14 +44,18 @@ router.get('/pantry', (req, res) => {
 //GET for ALL ingredients
 router.get('/all', (req, res) => {
   // GET route code here
+
+  
   const query = `
   SELECT 
     string_agg(ingredient, ',') as all_ingredients 
   FROM "ingredients_instock"
   ;`;
   pool.query(query)
+  
   .then( result => {
     res.send(result.rows);
+    console.log('This is a list of all INGREDIENTS', result.rows);
   })
   .catch( err => {
     console.log( 'ERROR in spices ROUTER GET', err );

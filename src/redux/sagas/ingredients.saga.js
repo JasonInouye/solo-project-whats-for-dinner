@@ -1,6 +1,16 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+function* getStock (){
+    try {
+        const stock = yield axios.get('/api/ingredients/all');
+        yield put({ type:'SET_STOCK', payload: stock.data });
+
+    } catch (err){
+        console.log('get all error', err);
+    }   
+}
+
 function* getRefrigerator (){
     try {
         const refrigerator = yield axios.get('/api/ingredients/refrigerator');
@@ -108,6 +118,7 @@ function* deleteSpice(action) {
 
 // This is for getting Ingredients for the refrigerator, pantry, spice
 function* getIngredients() {
+    yield takeLatest('GET_ALL_STOCK', getStock);
     yield takeLatest('GET_REFRIGERATOR', getRefrigerator);
     yield takeLatest('GET_PANTRY', getPantry);
     yield takeLatest('GET_SPICES', getSpices);

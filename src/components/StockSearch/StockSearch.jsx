@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import {useState} from "react";
+import {useEffect} from "react";
 import StockSearchResults from "./StockSearchResults";
+import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
 function StockSearch() {
-  const [search, setSearch] = useState('');
+  const dispatch = useDispatch();  
   const allItems = useSelector((store) => store.ingredients);
   const history = useHistory();
 
@@ -14,23 +15,28 @@ function StockSearch() {
     dispatch({ type: 'GET_ALL_STOCK' });
   }, []);
 
-  const handleEntireStock = (event) => {
-    setAllStockItems({...newSItem, ingredient: event.target.value,});
-  }
+  
 
-  const handleSubmit = () => {
-      event.preventDefault();
-      history.push('/stockSearch/' + allItems)
-  };
+  const handleEntireStock = (all_ingredients) => {
+    console.log('This is all of your stock items', all_ingredients );
+    history.push('/stockSearch/' + all_ingredients)
+  }
 
   return (
     <>
-      <h1>StockSearch</h1>
-      <FormStyle onSubmit={handleSubmit}>
-        <div>
-          <Button type="text" onChange={(event) => setSearch(event.target.value)}/>
-        </div>
-      </FormStyle>
+      <h1>Entire Stock</h1>
+      <div>
+        <ul>
+          {allItems.map((item) => {
+            return (
+              <div key={item.id}>
+                <li key={item.all_ingredients}>{item.all_ingredients}</li>
+                <button onClick={() => handleEntireStock(item.all_ingredients)}>Submit</button>
+              </div>
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 }
