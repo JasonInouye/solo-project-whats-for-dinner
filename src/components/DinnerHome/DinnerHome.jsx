@@ -22,12 +22,13 @@ import {
   Stack,
 } from '@mui/material';
 
-const style = {
-  mt: 2,
-  width:{ sm: 200, md: 300 },
-  padding: 2,
-  boxShadow: 6
-}
+// const style = {
+//   mt: 2,
+//   width:{ sm: 200, md: 345 },
+//   height:{ md: 500 },
+//   padding: 2,
+//   boxShadow: 6
+// }
 
 
 function DinnerHome() {
@@ -54,7 +55,6 @@ function DinnerHome() {
     };
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
     setOpen(false);
-    <Alert severity='success'>This is a success alert — check it out!</Alert>;
   };
 
   const handleClickOpen = () => {
@@ -68,37 +68,23 @@ function DinnerHome() {
   };
 
   return (
-    <Stack direction="row">
+    <Grid container spacing={3}>
       {favorite.map((favoriteRecipe) => {
         return (
           <div key={favoriteRecipe.id}>
-            <Grid item xs={4}>
-              <Card sx={{...style}}>
-                <CardHeader title={favoriteRecipe.recipe_name} />
+            <Grid item xs={3}>
+              <Card sx={{ maxWidth:1200}}>
+                {/* <CardHeader title={favoriteRecipe.recipe_name} /> */}
                 <Link to={'/recipeDetails/' + favoriteRecipe.spoon_id}>
                   <CardMedia
                     component='img'
-                    height='250'
+                    height='240'
+                    width='750'
                     image={favoriteRecipe.recipe_image}
                   />
                 </Link>
                 <CardContent>
-                  {/* <select
-                      id="dow"
-                      name="dow"
-                      onChange={(event) => setDow(event.target.value)}
-                    >
-                      {dowList.map((dow) => {
-                        return (
-                          <option key={dow.id} value={dow.dow}>
-                            {dow.dow}
-                          </option>
-                        );
-                      })}
-                    </select>
-                    <Button onClick={() => saveDow(favoriteRecipe)}>
-                      Add Day
-                    </Button> */}
+                  {favoriteRecipe.recipe_name}
                   <Button onClick={handleClickOpen}>Select a Day</Button>
                   <Dialog
                     disableEscapeKeyDown
@@ -151,7 +137,7 @@ function DinnerHome() {
           </div>
         );
       })}
-    </Stack>
+    </Grid>
   );
 }
 
