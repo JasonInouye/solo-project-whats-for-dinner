@@ -1,5 +1,7 @@
+import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 
 function RecipeDetails() {
   let params = useParams();
@@ -25,29 +27,31 @@ function RecipeDetails() {
   return (
     <div>
       <div>
-        <h2>{recipeDetails.title}</h2>
+        <h4>{recipeDetails.title}</h4>
         <img src={recipeDetails.image} alt="RecipeImage" />
       </div>
       
         {/* setting the active class based on which button is selected */}
-        <button
+        <Button
+          variant="text"
           className={selectedButton === "instructions" ? "active" : ""}
           onClick={() => setSelectedButton("instructions")}
         >
           Instructions
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="text"
           className={selectedButton === "ingredients" ? "active" : ""}
           onClick={() => setSelectedButton("ingredients")}
         >
           Ingredients
-        </button>
+        </Button>
         {selectedButton === "instructions" && (
           <div>
             {/* this code sets the raw api data with html tags to render html data on dom */}
-            <h3
+            <p
               dangerouslySetInnerHTML={{ __html: recipeDetails.instructions }}
-            ></h3>
+            ></p>
           </div>
         )}
         {selectedButton === "ingredients" && (
