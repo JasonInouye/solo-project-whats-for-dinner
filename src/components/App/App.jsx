@@ -28,6 +28,8 @@ import IngredientsPantry  from '../Ingredients/IngredientsPantry'
 import IngredientsSpices  from '../Ingredients/IngredientsSpices'
 import SingleSearch from '../SingleSearch/SingleSearch';
 import SingleSearchResults from '../SingleSearch/SingleSearchResults';
+import StockSearch from '../StockSearch/StockSearch';
+import StockSearchResults from '../StockSearch/StockSearchResults';
 import './App.css';
 
 
@@ -99,6 +101,22 @@ function App() {
             path="/search/:searchItem"
           >
             <SingleSearchResults />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/stockSearch"
+          >
+            <StockSearch />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/stockSearch/:searchString"
+          >
+            <StockSearchResults />
           </ProtectedRoute>
 
           <ProtectedRoute

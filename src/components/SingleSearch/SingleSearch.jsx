@@ -9,9 +9,12 @@ function SingleSearch() {
   const history = useHistory();
 
   const handleSubmit = () => {
+    console.log( 'This is your search data', search);
       event.preventDefault();
       history.push('/search/' + search)
   };
+
+  
 
   return (
     <>

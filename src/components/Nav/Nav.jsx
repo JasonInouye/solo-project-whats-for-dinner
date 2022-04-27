@@ -40,6 +40,10 @@ function Nav() {
               Single Search
             </Link>
 
+            <Link className="navLink" to="/stockSearch">
+              My Entire Stock Search
+            </Link>
+
             <Link className="navLink" to="/schedule">
               Schedule
             </Link>
