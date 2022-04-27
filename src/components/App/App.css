@@ -1,125 +1,82 @@
-html,
-body,
-#react-root {
-  height: 100%;
+ * {
+    margin: 0;
+    padding: 0;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0px;
+.main-container{
+    margin-top: 80px;
+    position: relative;
+    padding: 10px;
 }
 
-img {
-  display: inline-block;
-  max-width: 100%;
-}
+.bg-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.7;
+    background-image: url("/public/images/eaters-collective-12eHC6FxPyg-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+  }
 
-/* --------------------------------------------------------------------------------
-Container
--------------------------------------------------------------------------------- */
-
-.container {
-  padding: 20px;
-}
-
-/* --------------------------------------------------------------------------------
-Button
--------------------------------------------------------------------------------- */
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border-color: #014041;
-  border-width: 1px 1px 3px;
-  border-radius: 4px;
-  background-color: #00acb0;
-  color: #f8f8f8;
-  font-size: 1.1rem;
-  outline: 0;
-  cursor: pointer;
-}
-
-.btn_sizeMin {
-  min-height: 50px;
-  min-width: 100px;
-}
-
-.btn_sizeSm {
-  padding: 10px 15px;
-  font-size: 0.8rem;
-}
-
-.btn_sizeFull {
-  display: block;
-  width: 100%;
-}
-
-.btn:hover {
-  background-color: #008183;
-  text-decoration: none;
-}
-
-/* This line makes the "Register" and "Login" buttons look like links */
-.btn_asLink {
-  padding: 0;
-  border-width: 0;
-  border-bottom: 1px solid #444;
-  border-radius: 0;
-  background: none;
-  font: inherit;
-  color: #444;
-}
-
-.btn_asLink:hover {
-  background-color: transparent;
-  border-color: #008183;
-  color: #008183;
-}
-
-/* --------------------------------------------------------------------------------
-Alert
--------------------------------------------------------------------------------- */
-
-.alert {
-  box-sizing: border-box;
-  padding: 15px 10px;
-  margin: 15px 0;
-  border: 2px solid #e01616;
-  background-color: #efefef;
-  border-radius: 3px;
-  color: #e01616;
-  font-size: 0.8rem;
-}
-
-/* --------------------------------------------------------------------------------
-Form Treatment
--------------------------------------------------------------------------------- */
-
-.formPanel {
-  box-sizing: border-box;
-  width: 400px;
-  max-width: 100%;
-  padding: 25px;
-  margin: 0 auto 20px;
-  background-color: #efefef;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
-}
-
-input {
-  margin: 5px;
-  margin-bottom: 10px;
-}
-
-.dinner-home {
-  padding: 50px;
-}
-
-.navbar {
-  padding: 50px;
-  margin: 25px;
-}
-
-.p-day {
-  font-weight: bold;
-}
+.nav {
+    /* flex box layout */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.6s;
+    background-color: #dc1717;
+    z-index: 100000;
+  }
+  
+  .nav a {
+    text-decoration: none;
+  }
+  
+  /* .nav-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f2f2f2;
+    padding-left: 10px;
+    margin: 0;
+  } */
+  
+  .nav-title {
+    position: relative;
+    font-weight: 700;
+    color: #f2f2f2;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.6s;
+  }
+  
+  .navLink {
+    display: inline-block;
+    color: #f2f2f2;
+    background-color: #dc1717;
+    text-align: center;
+    padding: 24px 10px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.6s;
+  
+    /* these last two make the logout button in
+    the nav bar look like another link */
+    border: none;
+    cursor: pointer;
+    outline: 0;
+  }
+  
+  .navLink:hover {
+    background-color: #001010;
+  }
