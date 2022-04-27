@@ -64,7 +64,7 @@ function DinnerHomeTwo() {
         return (
           <div key={favoriteRecipe.id}>
             <Grid item xs={12} md={12}>
-              <Card sx={{ maxWidth: 345 }}>
+              <Card sx={{ maxWidth: 345, margin: 8 }}>
                 <CardHeader
                   avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
@@ -82,7 +82,7 @@ function DinnerHomeTwo() {
                 <Link to={'/recipeDetails/' + favoriteRecipe.spoon_id}>
                 <CardMedia
                   component='img'
-                  height='194'
+                  height='20%'
                   image={favoriteRecipe.recipe_image}
                   alt='Paella dish'
                 />
