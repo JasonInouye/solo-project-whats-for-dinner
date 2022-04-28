@@ -9,8 +9,6 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
 import {
   Box,
   Button,
@@ -32,7 +30,6 @@ function DinnerHomeTwo() {
   const dowList = useSelector((store) => store.dow);
   const [dow, setDow] = useState('');
   const [open, setOpen] = useState(false);
-  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     // dispatch to get all items to display on the DOM
@@ -62,7 +59,6 @@ function DinnerHomeTwo() {
       dow: dow,
     };
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
-    MySwal.fire(`Recipe added to ${dow}!`);
     setOpen(false);
   };
 
@@ -96,22 +92,62 @@ function DinnerHomeTwo() {
                     <IconButton aria-label='add to favorites'>
                       <FavoriteIcon />
                     </IconButton>
-                    <select
-                          id="dow"
-                          name="dow"
-                          onChange={(event) => setDow(event.target.value)}
+                    <Button onClick={handleClickOpen}>Select a Day</Button>
+                    <Dialog
+                      disableEscapeKeyDown
+                      open={open}
+                      onClose={handleClose}
+                      sx={{ backgroundColor: 'transparent' }}
+                    >
+                      <DialogTitle>Choose a Day</DialogTitle>
+                      <DialogContent>
+                        <Box
+                          component='form'
+                          sx={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            backgroundColor: 'transparent',
+                          }}
                         >
-                          {dowList.map((dow) => {
-                            return (
-                              <option key={dow.id} value={dow.dow}>
-                                {dow.dow}
-                              </option>
-                            );
-                          })}
-                        </select>
-                        <button onClick={() => saveDow(favoriteRecipe)}>
-                          Add Day
-                        </button>
+                          <FormControl
+                            sx={{
+                              m: 5,
+                              minWidth: 240,
+                              backgroundColor: 'transparent',
+                            }}
+                          >
+                            <InputLabel htmlFor='demo-dialog-native'>
+                              Day
+                            </InputLabel>
+                            <Select
+                              native
+                              value={dow.dow}
+                              onChange={(event) => setDow(event.target.value)}
+                              input={
+                                <OutlinedInput
+                                  label='Dow'
+                                  id='demo-dialog-native'
+                                />
+                              }
+                            >
+                              {dowList.map((dow) => {
+                                return (
+                                  <option key={dow.id} value={dow.dow}>
+                                    {dow.dow}
+                                  </option>
+                                );
+                              })}
+                            </Select>
+                          </FormControl>
+                        </Box>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={handleClose}>Cancel</Button>
+                        <Button onClick={() => saveDow(favoriteRecipe)}>
+                          Ok
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
                   </CardActions>
                 </Card>
               </Grid>

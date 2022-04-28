@@ -36,7 +36,7 @@ function WeeklySchedule() {
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
-        <Box width={400} height={280} bgcolor="white" p={3} borderRadius={3}>
+        <Box width={400} height={480} bgcolor="white" p={3} borderRadius={3}>
           <div>
             <h2>{heading}</h2>
           </div>
