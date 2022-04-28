@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import {
-  HashRouter as Router,
-} from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import SideBar from '../SideBar/SideBar';
 import MainContainer from '../MainContainer/MainContainer';
+import WeeklySchedule from '../WeeklySchedule/WeeklySchedule';
 import './App.css';
 
 import { Box, Stack } from '@mui/material';
@@ -26,13 +25,14 @@ function App() {
       <Router>
         <div className='bg-image'>
           <Nav />
-          <div className='main-container'>
-            <Stack direction='row' spacing={3} justifyContent='space-between'>
-              <SideBar />
-              <MainContainer />
-            </Stack>
-          </div>
+          <body>
+          <Stack direction='row' spacing={3} justifyContent='space-between'>
+            <SideBar />
+            <MainContainer />
+          </Stack>
+          <WeeklySchedule />
           {/* <Footer /> */}
+          </body>
         </div>
       </Router>
     </Box>
