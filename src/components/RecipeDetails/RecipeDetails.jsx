@@ -25,9 +25,9 @@ function RecipeDetails() {
   console.log("this is the JSON for details", recipeDetails);
 
   return (
-    <div>
+    <div className="main-container">
       <div>
-        <h4>{recipeDetails.title}</h4>
+        <h2>{recipeDetails.title}</h2>
         <img src={recipeDetails.image} alt="RecipeImage" />
       </div>
       

@@ -42,7 +42,7 @@ function EditIngredient() {
         };
         
       return (
-        <>
+        <div className="main-container">
           <h2>Edit Ingredient</h2>
           <form onSubmit={handleSubmit}>
             <input
@@ -52,7 +52,7 @@ function EditIngredient() {
             />
             <input type='submit' value='Update Ingredient' />
           </form>
-        </>
+        </div>
       );
 };
 

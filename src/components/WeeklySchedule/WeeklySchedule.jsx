@@ -2,6 +2,7 @@ import { MenuBook } from '@mui/icons-material';
 import { Box, Fab, Modal, Tooltip, styled } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 const StyledModal = styled(Modal)({
   display:"flex",
@@ -30,13 +31,18 @@ function WeeklySchedule() {
           <MenuBook />
         </Fab>
       </Tooltip>
+      <ProtectedRoute
+          // logged in shows UserPage else shows LoginPage
+          exact
+          path='/schedule'
+        >
       <StyledModal
         open={open}
         onClose={event => setOpen(false)}
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
-        <Box width={400} height={280} bgcolor="white" p={3} borderRadius={3}>
+        <Box width={400} height={480} bgcolor="white" p={3} borderRadius={3}>
           <div>
             <h2>{heading}</h2>
           </div>
@@ -62,6 +68,7 @@ function WeeklySchedule() {
           </div>
         </Box>
       </StyledModal>
+      </ProtectedRoute>
     </>
   );
 }
