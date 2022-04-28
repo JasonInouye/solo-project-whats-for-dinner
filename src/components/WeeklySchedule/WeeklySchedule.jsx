@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 const StyledModal = styled(Modal)({
@@ -32,6 +33,7 @@ function WeeklySchedule() {
 
   return (
     <>
+    
       <Tooltip
         onClick={(event) => setOpen(true)}
         title='Weekly Menu'
@@ -41,11 +43,13 @@ function WeeklySchedule() {
           <MenuBook />
         </Fab>
       </Tooltip>
-      <ProtectedRoute
+      
+      {/* <ProtectedRoute
         // logged in shows UserPage else shows LoginPage
         exact
         path='/schedule'
-      >
+      > */}
+      <Link to="/schedule">
         <StyledModal
           open={open}
           onClose={(event) => setOpen(false)}
@@ -93,7 +97,8 @@ function WeeklySchedule() {
             </Box>
           </Box>
         </StyledModal>
-      </ProtectedRoute>
+      {/* </ProtectedRoute> */}
+      </Link>
     </>
   );
 }

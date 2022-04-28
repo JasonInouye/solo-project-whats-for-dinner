@@ -47,7 +47,7 @@ function IngredientsPantry() {
         <table>
           <thead>
             <tr>
-              <th>Ingredient</th>
+              <th></th>
               <th></th>
               <th></th>
             </tr>
