@@ -28,7 +28,7 @@ function SingleSearchResults() {
   console.log("this is the search results", searchedRecipes);
 
   return (
-    <>
+    <div className="main-container">
       {searchedRecipes.map((item) => {
         console.log("this is the item", item);
         return (
@@ -40,7 +40,7 @@ function SingleSearchResults() {
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
 

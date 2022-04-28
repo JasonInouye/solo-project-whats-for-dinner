@@ -23,7 +23,7 @@ function StockSearch() {
   }
 
   return (
-    <>
+    <div className="main-container">
       <h1>Entire Stock</h1>
       <div>
         <ul>
@@ -37,7 +37,7 @@ function StockSearch() {
           })}
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 

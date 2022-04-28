@@ -25,12 +25,14 @@ function App() {
       <Router>
         <div className='bg-image'>
           <Nav />
+          <body>
           <Stack direction='row' spacing={3} justifyContent='space-between'>
             <SideBar />
             <MainContainer />
           </Stack>
           <WeeklySchedule />
           {/* <Footer /> */}
+          </body>
         </div>
       </Router>
     </Box>

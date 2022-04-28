@@ -31,41 +31,37 @@ function Nav() {
               Info Page
             </Link>
 
-            <Link className="navLink" to="/favorite">
+            {/* <Link className="navLink" to="/favorite">
               Saved Recipes
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/favorite">
-              Saved Recipes 2
-            </Link>
-
-            <Link className="navLink" to="/search">
+            {/* <Link className="navLink" to="/search">
               Single Search
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/stockSearch">
+            {/* <Link className="navLink" to="/stockSearch">
               My Entire Stock Search
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/schedule">
+            {/* <Link className="navLink" to="/schedule">
               Schedule
-            </Link>
+            </Link> */}
 
             {/* <Link className="navLink" to="/recipeDetails">
               Recipe Details
             </Link> */}
 
-            <Link className="navLink" to="/ingredients/refrigerator">
+            {/* <Link className="navLink" to="/ingredients/refrigerator">
               Refrigerator
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/ingredients/pantry">
+            {/* <Link className="navLink" to="/ingredients/pantry">
               Pantry
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/ingredients/spices">
+            {/* <Link className="navLink" to="/ingredients/spices">
               Spices
-            </Link>
+            </Link> */}
 
             <LogOutButton className="navLink" />
           </>

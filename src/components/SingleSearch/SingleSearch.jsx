@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import {useState} from "react";
+import { Link } from 'react-router-dom';
 import SingleSearchResults from "./SingleSearchResults";
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
+
 
 function SingleSearch() {
   const [search, setSearch] = useState('');
@@ -17,14 +19,14 @@ function SingleSearch() {
   
 
   return (
-    <>
-      <h1>SingleSearch</h1>
+    <div className="main-container">
+      <h1>Search Dinner Tonight</h1>
       <FormStyle onSubmit={handleSubmit}>
         <div>
           <input type="text" value={search} onChange={(event) => setSearch(event.target.value)}/>
         </div>
       </FormStyle>
-    </>
+    </div>
   );
 }
 
@@ -37,8 +39,9 @@ const FormStyle = styled.form`
   }
 
   input {
-    font-size: 1.5rem;
-    width: 100%;
+    font-size: 2.5rem;
+    width: 75%;
+    border-radius: 10px;
   }
 `;
 

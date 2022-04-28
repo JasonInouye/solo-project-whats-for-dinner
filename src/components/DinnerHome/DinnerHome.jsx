@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardActions from '@mui/material/CardActions';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import { red } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
-  Alert,
   Box,
   Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
   Dialog,
   DialogActions,
   DialogContent,
@@ -19,19 +21,10 @@ import {
   InputLabel,
   OutlinedInput,
   Select,
-  Stack,
 } from '@mui/material';
 
-// const style = {
-//   mt: 2,
-//   width:{ sm: 200, md: 345 },
-//   height:{ md: 500 },
-//   padding: 2,
-//   boxShadow: 6
-// }
-
-
-function DinnerHome() {
+function DinnerHomeTwo() {
+  const [expanded, setExpanded] = React.useState(false);
   const dispatch = useDispatch();
   const favorite = useSelector((store) => store.favorite);
   const dowList = useSelector((store) => store.dow);
@@ -44,17 +37,8 @@ function DinnerHome() {
     dispatch({ type: 'GET_DOW' });
   }, []);
 
-  //console.log( 'This is the DOW', dowList);
-
-  const saveDow = (favoriteRecipe) => {
-    console.log('CLICKED');
-    let addDow = {
-      id: favoriteRecipe.id,
-      spoon_id: favoriteRecipe.spoon_id,
-      dow: dow,
-    };
-    dispatch({ type: 'SET_MENU_DOW', payload: addDow });
-    setOpen(false);
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
   };
 
   const handleClickOpen = () => {
@@ -67,78 +51,110 @@ function DinnerHome() {
     }
   };
 
+  const saveDow = (favoriteRecipe) => {
+    console.log('CLICKED');
+    let addDow = {
+      id: favoriteRecipe.id,
+      spoon_id: favoriteRecipe.spoon_id,
+      dow: dow,
+    };
+    dispatch({ type: 'SET_MENU_DOW', payload: addDow });
+    setOpen(false);
+  };
+
   return (
-    <Grid container spacing={3}>
-      {favorite.map((favoriteRecipe) => {
-        return (
-          <div key={favoriteRecipe.id}>
-            <Grid item xs={3}>
-              <Card sx={{ maxWidth:1200}}>
-                {/* <CardHeader title={favoriteRecipe.recipe_name} /> */}
-                <Link to={'/recipeDetails/' + favoriteRecipe.spoon_id}>
-                  <CardMedia
-                    component='img'
-                    height='240'
-                    width='750'
-                    image={favoriteRecipe.recipe_image}
+    <div className='main-container'>
+      <Grid container spacing={3}>
+        {favorite.map((favoriteRecipe) => {
+          return (
+            <div key={favoriteRecipe.id}>
+              <Grid item xs={12} md={12}>
+                <Card sx={{ maxWidth: 345, margin: 8 }}>
+                  <CardHeader
+                    avatar={
+                      <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
+                        WFD
+                      </Avatar>
+                    }
+                    title={favoriteRecipe.recipe_name}
                   />
-                </Link>
-                <CardContent>
-                  {favoriteRecipe.recipe_name}
-                  <Button onClick={handleClickOpen}>Select a Day</Button>
-                  <Dialog
-                    disableEscapeKeyDown
-                    open={open}
-                    onClose={handleClose}
-                    sx={{ backgroundColor: 'transparent'}}
-                  >
-                    <DialogTitle>Choose a Day</DialogTitle>
-                    <DialogContent>
-                      <Box
-                        component='form'
-                        sx={{ display: 'flex', flexWrap: 'wrap', backgroundColor: 'transparent' }}
-                      >
-                        <FormControl sx={{ m: 5, minWidth: 240, backgroundColor: 'transparent' }}>
-                          <InputLabel htmlFor='demo-dialog-native'>
-                            Day
-                          </InputLabel>
-                          <Select
-                            native
-                            value={dow.dow}
-                            onChange={(event) => setDow(event.target.value)}
-                            input={
-                              <OutlinedInput
-                                label='Dow'
-                                id='demo-dialog-native'
-                              />
-                            }
+                  <Link to={'/recipeDetails/' + favoriteRecipe.spoon_id}>
+                    <CardMedia
+                      component='img'
+                      height='20%'
+                      image={favoriteRecipe.recipe_image}
+                      alt='Paella dish'
+                    />
+                  </Link>
+                  <CardActions disableSpacing>
+                    <IconButton aria-label='add to favorites'>
+                      <FavoriteIcon />
+                    </IconButton>
+                    <Button onClick={handleClickOpen}>Select a Day</Button>
+                    <Dialog
+                      disableEscapeKeyDown
+                      open={open}
+                      onClose={handleClose}
+                      sx={{ backgroundColor: 'transparent' }}
+                    >
+                      <DialogTitle>Choose a Day</DialogTitle>
+                      <DialogContent>
+                        <Box
+                          component='form'
+                          sx={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            backgroundColor: 'transparent',
+                          }}
+                        >
+                          <FormControl
+                            sx={{
+                              m: 5,
+                              minWidth: 240,
+                              backgroundColor: 'transparent',
+                            }}
                           >
-                            {dowList.map((dow) => {
-                              return (
-                                <option key={dow.id} value={dow.dow}>
-                                  {dow.dow}
-                                </option>
-                              );
-                            })}
-                          </Select>
-                        </FormControl>
-                      </Box>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={handleClose}>Cancel</Button>
-                      <Button onClick={() => saveDow(favoriteRecipe)}>
-                        Ok
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
-                </CardContent>
-              </Card>
-            </Grid>
-          </div>
-        );
-      })}
-    </Grid>
+                            <InputLabel htmlFor='demo-dialog-native'>
+                              Day
+                            </InputLabel>
+                            <Select
+                              native
+                              value={dow.dow}
+                              onChange={(event) => setDow(event.target.value)}
+                              input={
+                                <OutlinedInput
+                                  label='Dow'
+                                  id='demo-dialog-native'
+                                />
+                              }
+                            >
+                              {dowList.map((dow) => {
+                                return (
+                                  <option key={dow.id} value={dow.dow}>
+                                    {dow.dow}
+                                  </option>
+                                );
+                              })}
+                            </Select>
+                          </FormControl>
+                        </Box>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={handleClose}>Cancel</Button>
+                        <Button onClick={() => saveDow(favoriteRecipe)}>
+                          Ok
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+                  </CardActions>
+                </Card>
+              </Grid>
+            </div>
+          );
+        })}
+      </Grid>
+    </div>
   );
 }
 
-export default DinnerHome;
+export default DinnerHomeTwo;
