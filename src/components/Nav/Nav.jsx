@@ -23,46 +23,12 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Link className="navLink" to="/user">
+            <Link className="navLink" to="/favorite">
               Home
             </Link>
-
             <Link className="navLink" to="/info">
               Info Page
             </Link>
-
-            {/* <Link className="navLink" to="/favorite">
-              Saved Recipes
-            </Link> */}
-
-            {/* <Link className="navLink" to="/search">
-              Single Search
-            </Link> */}
-
-            {/* <Link className="navLink" to="/stockSearch">
-              My Entire Stock Search
-            </Link> */}
-
-            {/* <Link className="navLink" to="/schedule">
-              Schedule
-            </Link> */}
-
-            {/* <Link className="navLink" to="/recipeDetails">
-              Recipe Details
-            </Link> */}
-
-            {/* <Link className="navLink" to="/ingredients/refrigerator">
-              Refrigerator
-            </Link> */}
-
-            {/* <Link className="navLink" to="/ingredients/pantry">
-              Pantry
-            </Link> */}
-
-            {/* <Link className="navLink" to="/ingredients/spices">
-              Spices
-            </Link> */}
-
             <LogOutButton className="navLink" />
           </>
         )}
