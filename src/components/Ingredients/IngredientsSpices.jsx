@@ -30,7 +30,7 @@ function IngredientsSpices() {
   }
 
   return (
-    <>
+    <div className="main-container">
       <h1>Spices Ingredients</h1>
       <form>
         <input type="text" placeholder="Add Ingredient" value={newSpicesItem.ingredient} onChange={handleIngredientItem}/>
@@ -51,7 +51,7 @@ function IngredientsSpices() {
           })}
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 
