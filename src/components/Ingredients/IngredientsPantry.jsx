@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import {
+  Box,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { Add } from '@mui/icons-material';
+import { red } from '@mui/material/colors';
 
 function IngredientsPantry() {
   const dispatch = useDispatch();
@@ -33,53 +48,62 @@ function IngredientsPantry() {
 
   return (
     <div className='main-container'>
-      <h1>Pantry Ingredients</h1>
-      <form>
-        <input
-          type='text'
-          placeholder='Add Ingredient'
+      <Typography variant="h5">Pantry</Typography>
+      <Box
+        sx={{
+          width: 500,
+          maxWidth: '100%',
+        }}
+      >
+        <TextField
+          id='outlined-search'
+          label='Add Ingredient'
+          type='search'
           value={newPantryItem.ingredient}
           onChange={handleIngredientItem}
+          sx={{ mt:2, mb:2 }}
         />
-        <button onClick={addIngredient}>Submit</button>
-      </form>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {pantry.map((item) => {
-              return (
-                <div>
-                  <tr key={item.id}>
-                    <td>{item.ingredient}</td>
-                    <td>
-                      <button
-                        onClick={(event) =>
-                          dispatch({
-                            type: 'DELETE_PANTRY',
-                            payload: item.id,
-                          })
-                        }
-                      >
-                        Delete
-                      </button>
-                    </td>
-                    <td>
-                      <button onClick={() => handleEdit(item)}>Edit</button>
-                    </td>
-                  </tr>
-                </div>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      </Box>
+      <Button variant="contained" endIcon={<Add />} onClick={addIngredient} color="error" size="small">
+        Submit
+      </Button>
+      <TableContainer component={Paper} sx={{ mt: 5, width: 700 }}>
+        <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+          <TableHead>
+            <TableRow>
+              <TableCell align='Left' sx={{ width: 100 }}>
+                Ingredients
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {pantry.map((item) => (
+              <TableRow
+                key={item.id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component='th' scope='row'>
+                  <Typography>{item.ingredient}</Typography>
+                  <Button
+                    size='small'
+                    onClick={(event) =>
+                      dispatch({
+                        type: 'DELETE_PANTRY',
+                        payload: item.id,
+                      })
+                    }
+                  >
+                    Delete
+                  </Button>
+                  <Button size='small' onClick={() => handleEdit(item)}>
+                    Edit
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }
