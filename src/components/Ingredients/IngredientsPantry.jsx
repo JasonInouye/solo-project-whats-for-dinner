@@ -15,7 +15,6 @@ import {
   Typography,
 } from '@mui/material';
 import { Add } from '@mui/icons-material';
-import { red } from '@mui/material/colors';
 
 function IngredientsPantry() {
   const dispatch = useDispatch();

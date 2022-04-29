@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom'
+import {
+  Box,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { Add } from '@mui/icons-material';
 
 function IngredientsRefrigerator() {
   const dispatch = useDispatch();
@@ -30,28 +44,64 @@ function IngredientsRefrigerator() {
   }
 
   return (
-    <div className="main-container">
-      <h1>Refrigerator Ingredients</h1>
-      <form>
-        <input type="text" placeholder="Add Ingredient" value={newRefrigeratorItem.ingredient} onChange={handleIngredientItem}/>
-        <button onClick={addIngredient}>Submit</button>
-      </form>
-      <div>
-        <ul>
-          {refrigerator.map((item) => {
-            return (
-              <div key={item.id}>
-                <li>{item.ingredient}</li>
-                <button onClick={(event) => dispatch({ type: "DELETE_INGREDIENT", payload: item.id })}>
+    <div className='main-container'>
+    <Typography variant="h5">Refrigerator</Typography>
+    <Box
+      sx={{
+        width: 500,
+        maxWidth: '100%',
+      }}
+    >
+      <TextField
+        id='outlined-search'
+        label='Add Ingredient'
+        type='search'
+        value={newRefrigeratorItem.ingredient}
+        onChange={handleIngredientItem}
+        sx={{ mt:2, mb:2 }}
+      />
+    </Box>
+    <Button variant="contained" endIcon={<Add />} onClick={addIngredient} color="error" size="small">
+      Submit
+    </Button>
+    <TableContainer component={Paper} sx={{ mt: 5, width: 700 }}>
+      <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+        <TableHead>
+          <TableRow>
+            <TableCell align='Left' sx={{ width: 100 }}>
+              Ingredients
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {refrigerator.map((item) => (
+            <TableRow
+              key={item.id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component='th' scope='row'>
+                <Typography>{item.ingredient}</Typography>
+                <Button
+                  size='small'
+                  onClick={(event) =>
+                    dispatch({
+                      type: 'DELETE_INGREDIENT',
+                      payload: item.id,
+                    })
+                  }
+                >
                   Delete
-                </button>
-                <button onClick={() => handleEdit(item)}>Edit</button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
-    </div>
+                </Button>
+                <Button size='small' onClick={() => handleEdit(item)}>
+                  Edit
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  </div>
   );
 }
 

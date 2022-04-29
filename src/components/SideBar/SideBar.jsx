@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Link as RouterLink,
-  Route,
-  Routes,
   MemoryRouter,
   useLocation,
   StaticRouter,
@@ -18,13 +16,17 @@ import {
   ListItemText,
 } from '@mui/material';
 import {
-  Home,
+  ExpandLess,
+  ExpandMore,
+  Inbox,
   Inventory,
   Kitchen,
   MenuBook,
   Save,
   Search,
+  StarBorder,
 } from '@mui/icons-material';
+import { Collapse } from 'bootstrap';
 
 function Router(props) {
   const { children } = props;
@@ -45,7 +47,7 @@ Router.propTypes = {
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
-
+  
   const renderLink = React.useMemo(
     () =>
       React.forwardRef(function Link(itemProps, ref) {
@@ -80,48 +82,67 @@ function ListItemLink(props) {
 }
 
 function SideBar() {
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  const [open, setOpen] = React.useState(true);
+
   return (
-      <Box flex={1} p={3} mt={9}>
-        <Box position='fixed'>
-          <List>
-            <ListItemLink
-              to='/favorite'
-              primary='Saved Recipes'
-              icon={<Save />}
-            />
-            <ListItemLink
-              to='/stockSearch'
-              primary='Inventory Search'
-              icon={<Inventory />}
-            />
-            <ListItemLink
-              to='/search'
-              primary='Search'
-              icon={<Search />}
-            />
-            <ListItemLink
-              to='/schedule'
-              primary='Weekly Menu'
-              icon={<MenuBook />}
-            />
-            <ListItemLink
-              to='/ingredients/refrigerator'
-              primary='Refrigerator'
-              icon={<Kitchen />}
-            />
-            <ListItemLink
-              to='/ingredients/pantry'
-              primary='Pantry'
-              icon={<Kitchen />}
-            />
-            <ListItemLink
-              to='/ingredients/spices'
-              primary='Spices'
-              icon={<Kitchen />}
-            />
-          </List>
-        </Box>
+    <Box flex={1} p={3} mt={9}>
+      <Box position='fixed'>
+        <List>
+          <ListItemLink
+            to='/favorite'
+            primary='Saved Recipes'
+            icon={<Save />}
+          />
+          <ListItemLink
+            to='/stockSearch'
+            primary='Inventory Search'
+            icon={<Inventory />}
+          />
+          <ListItemLink to='/search' primary='Search' icon={<Search />} />
+          <ListItemLink
+            to='/schedule'
+            primary='Weekly Menu'
+            icon={<MenuBook />}
+          />
+          <ListItemLink
+            to='/ingredients/refrigerator'
+            primary='Refrigerator'
+            icon={<Kitchen />}
+          />
+          <ListItemLink
+            to='/ingredients/pantry'
+            primary='Pantry'
+            icon={<Kitchen />}
+          />
+          <ListItemLink
+            to='/ingredients/spices'
+            primary='Spices'
+            icon={<Kitchen />}
+          />
+          {/* <ListItemButton onClick={handleClick}>
+            <ListItemIcon>
+              <Inbox />
+            </ListItemIcon>
+            <ListItemText primary='Inbox' />
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={open} timeout='auto' unmountOnExit>
+            <List component='div' disablePadding>
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary='Starred' />
+              </ListItemButton>
+            </List>
+          </Collapse> */}
+        </List>
       </Box>
+    </Box>
   );
 }
 
