@@ -15,7 +15,6 @@ function* retrieveDow (){
 }
 
 function* getSchedule (){
-    
     try {
         const schedule = yield axios.get('/api/dow/schedule');
         console.log('SAGA GET SCHEDULE LOG', schedule.data);
@@ -27,16 +26,15 @@ function* getSchedule (){
 }
 
 function* addMenuDow(action) {
-    console.log( 'here is the payload for my POST', action.payload );
     try{
         yield axios.post('/api/dow', action.payload);
+        yield put({ type:'GET_SCHEDULE' });
     } catch(err){
         console.log(err);
     }
 }
 
 function* deleteScheduleRecipe(action) {
-    console.log( 'LOG FROM DELETE SAGA', action.payload);
     try {
         yield axios.delete(`/api/dow/${action.payload}`)
         yield put({ type: 'GET_SCHEDULE' })
@@ -52,6 +50,5 @@ function* getDow() {
     yield takeLatest('GET_SCHEDULE', getSchedule);
     yield takeLatest('DELETE_SCHEDULE_RECIPE', deleteScheduleRecipe);
 }
-
 
 export default getDow;  

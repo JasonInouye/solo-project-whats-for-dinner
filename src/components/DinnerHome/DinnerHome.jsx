@@ -12,27 +12,17 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {
-  Box,
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  FormControl,
   Grid,
-  InputLabel,
-  OutlinedInput,
-  Select,
-  Typography,
 } from '@mui/material';
 
 function DinnerHomeTwo() {
   const [expanded, setExpanded] = React.useState(false);
+  const [open, setOpen] = React.useState('Select A Day');
   const dispatch = useDispatch();
   const favorite = useSelector((store) => store.favorite);
   const dowList = useSelector((store) => store.dow);
   const [dow, setDow] = useState('');
-  const [open, setOpen] = useState(false);
   const MySwal = withReactContent(Swal);
 
   useEffect(() => {
@@ -64,7 +54,7 @@ function DinnerHomeTwo() {
     };
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
     MySwal.fire(`Recipe added to ${dow}!`);
-    setOpen(false);
+    setOpen('Select A Day');
   };
 
   return (
