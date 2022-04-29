@@ -31,19 +31,21 @@ function SingleSearchResults() {
   const [open, setOpen] = useState(false);
   const [dow, setDow] = useState('');
   const dowList = useSelector((store) => store.dow);
+  const [favoriteItem, setFavoriteItem] = useState({
+    id: 0, 
+    image: '',
+    title: '',
+  });
 
   const searchResults = async (name) => {
-    console.log("this is the Name inside of FETCH", name);
     const data = await fetch(
       
       //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
       // `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${params.id}/information?rapidapi-key=${process.env.REACT_RAPID_API_KEY}`
     );
-    //console.log("this is the data", data);
     const recipes = await data.json();
     setSearchedRecipes(recipes.results);
-    console.log('this is the recipes results', recipes.results);
   };
 
   useEffect(() => {
@@ -55,6 +57,17 @@ function SingleSearchResults() {
     setOpen(true);
   };
 
+  const handleFavorite = (item) => {
+    console.log( 'CLICKED HEART', item );
+    let favoriteItem = {
+      spoon_id: item.id,
+      recipe_name: item.title,
+      recipe_image: item.image,
+    }
+    dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
+    setFavoriteItem({ id: 0, image: '', title: ''});
+  }
+
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
       setOpen(false);
@@ -62,7 +75,6 @@ function SingleSearchResults() {
   };
 
   const saveDow = (favoriteRecipe) => {
-    console.log('CLICKED');
     let addDow = {
       id: favoriteRecipe.id,
       spoon_id: favoriteRecipe.spoon_id,
@@ -76,7 +88,6 @@ function SingleSearchResults() {
     <div className="main-container">
       <Grid container spacing={6}>
       {searchedRecipes.map((item) => {
-        console.log( item );
         return (
           <div key={item.id}>
             <Grid item xs={12} md={12}>
@@ -98,7 +109,7 @@ function SingleSearchResults() {
                     />
                   </Link>
                   <CardActions disableSpacing>
-                    <IconButton aria-label='add to favorites'>
+                    <IconButton aria-label='add to favorites' onClick={() => handleFavorite(item)}>
                       <FavoriteIcon />
                     </IconButton>
                     {/* <Button onClick={handleClickOpen}>Select a Day</Button> */}
