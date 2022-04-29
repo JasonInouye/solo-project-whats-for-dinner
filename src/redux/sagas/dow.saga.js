@@ -26,7 +26,6 @@ function* getSchedule (){
 }
 
 function* addMenuDow(action) {
-    console.log( 'here is the payload for my POST', action.payload );
     try{
         yield axios.post('/api/dow', action.payload);
         yield put({ type:'GET_SCHEDULE' });
@@ -36,7 +35,6 @@ function* addMenuDow(action) {
 }
 
 function* deleteScheduleRecipe(action) {
-    console.log( 'LOG FROM DELETE SAGA', action.payload);
     try {
         yield axios.delete(`/api/dow/${action.payload}`)
         yield put({ type: 'GET_SCHEDULE' })
