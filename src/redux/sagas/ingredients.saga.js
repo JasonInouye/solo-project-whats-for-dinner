@@ -43,25 +43,10 @@ function* getSpices (){
 
 // This is the Saga for Refrigerator
 function* addIngredient(action) {
-    // console.log( 'here is the payload for my Add Ingredient', action.payload );
-    // let type = '';
-    // if (action.payload.location == 'Refrigerator') {
-    //     return type = 'GET_REFRIGERATOR'
-    // } else if (action.payload.location == 'Pantry') {
-    //     return type = 'GET_PANTRY'
-    // } else if (action.payload.location == 'Spices') {
-    //     return type = 'GET_SPICES'
-    // }
-
-    // console.log( "this is the TYPE", type);
 
     try{
         yield axios.post('/api/ingredients', action.payload);
-        // my attempt to keep this as a single saga
-        //yield put({ type: type })
         yield put({ type: 'GET_REFRIGERATOR' })
-        // yield put({ type: 'GET_PANTRY' })
-        // yield put({ type: 'GET_SPICES' })
     } catch(err){
         console.log(err);
     }

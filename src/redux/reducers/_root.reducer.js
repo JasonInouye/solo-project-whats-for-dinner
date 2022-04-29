@@ -5,6 +5,7 @@ import favorite from './dinner.get.reducers' // this reducer is for favorite lis
 import dow from './dow.get.reducers'
 import ingredients from './ingredients.reducer'
 import editIngredient from './edit.reducer';
+import scheduleData from './schedule.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   dow,
   ingredients,
   editIngredient,
+  scheduleData,
 });
 
 export default rootReducer;
