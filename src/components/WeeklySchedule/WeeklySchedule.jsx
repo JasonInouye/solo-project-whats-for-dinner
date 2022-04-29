@@ -44,12 +44,12 @@ function WeeklySchedule() {
         </Fab>
       </Tooltip>
       
+      {/* <Link to="/"> */}
       {/* <ProtectedRoute
         // logged in shows UserPage else shows LoginPage
         exact
         path='/schedule'
       > */}
-      <Link to="/">
         <StyledModal
           open={open}
           onClose={(event) => setOpen(false)}
@@ -61,7 +61,7 @@ function WeeklySchedule() {
               <h2>{heading}</h2>
             </Typography>
             <Box sx={{ mt:1 }}>
-              {schedule.map((schedule) => {
+              {schedule?.map((schedule) => {
                 return (
                   <div key={schedule.id}>
                     <Typography variant='h6' sx={{ fontWeight: '500' }}>
@@ -98,7 +98,7 @@ function WeeklySchedule() {
           </Box>
         </StyledModal>
       {/* </ProtectedRoute> */}
-      </Link>
+      {/* </Link> */}
     </>
   );
 }

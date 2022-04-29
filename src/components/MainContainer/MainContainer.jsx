@@ -33,9 +33,11 @@ function MainContainer() {
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
+  // const schedule = useSelector((store) => store.dow);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    // dispatch({type: 'GET_SCHEDULE'})
   }, [dispatch]);
 
   return (

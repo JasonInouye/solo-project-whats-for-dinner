@@ -28,7 +28,7 @@ function RecipeDetails() {
     <div className="main-container">
       <div>
         <h2>{recipeDetails.title}</h2>
-        <img src={recipeDetails.image} alt="RecipeImage" />
+        <img src={recipeDetails?.image} alt="RecipeImage" />
       </div>
       
         {/* setting the active class based on which button is selected */}
