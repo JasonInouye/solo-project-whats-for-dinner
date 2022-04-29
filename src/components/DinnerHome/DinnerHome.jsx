@@ -109,9 +109,9 @@ function DinnerHomeTwo() {
                             );
                           })}
                         </select>
-                        <button onClick={() => saveDow(favoriteRecipe)}>
+                        <Button onClick={() => saveDow(favoriteRecipe)}>
                           Add Day
-                        </button>
+                        </Button>
                   </CardActions>
                 </Card>
               </Grid>

@@ -44,7 +44,7 @@ function WeeklySchedule() {
         </Fab>
       </Tooltip>
       
-      {/* <Link to="/"> */}
+      {/* <Link to="/schedule"> */}
       {/* <ProtectedRoute
         // logged in shows UserPage else shows LoginPage
         exact
