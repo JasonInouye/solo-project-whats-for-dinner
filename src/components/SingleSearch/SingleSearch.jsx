@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {useState} from "react";
-import { Link } from 'react-router-dom';
-import SingleSearchResults from "./SingleSearchResults";
 import {useHistory} from 'react-router-dom';
-
 
 function SingleSearch() {
   const [search, setSearch] = useState('');
@@ -15,8 +12,6 @@ function SingleSearch() {
       event.preventDefault();
       history.push('/search/' + search)
   };
-
-  
 
   return (
     <div className="main-container">
@@ -37,11 +32,11 @@ const FormStyle = styled.form`
   div {
     position: relative;
   }
-
+  
   input {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     width: 75%;
-    border-radius: 10px;
+    border-radius: 3px;
   }
 `;
 

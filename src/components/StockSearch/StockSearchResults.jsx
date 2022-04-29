@@ -36,7 +36,7 @@ function StockSearchResults() {
   const stockResults = async (name) => {
     console.log('This is inside of the FETCH', name);
     const data = await fetch(
-      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_API_KEY}&ingredients=${name}`
+      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_API_KEY}&ranking=2&number=20&ingredients=${name}`
       //`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&ranking=2&number=20&ingredients=${name}`
     );
     //console.log("this is the data", data);

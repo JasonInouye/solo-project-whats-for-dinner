@@ -87,7 +87,6 @@ function* addSpice(action) {
 
 // This is the delete for refrigerator
 function* deleteIngredient(action) {
-    console.log( 'LOG FROM DELETE INGREDIENT SAGA', action.payload);
     try {
         yield axios.delete(`/api/ingredients/${action.payload}`)
         yield put({ type: 'GET_REFRIGERATOR' })
@@ -97,7 +96,6 @@ function* deleteIngredient(action) {
 }
 
 function* deletePantry(action) {
-    console.log( 'LOG FROM DELETE INGREDIENT SAGA', action.payload);
     try {
         yield axios.delete(`/api/ingredients/${action.payload}`)
         yield put({ type: 'GET_PANTRY' })
@@ -107,7 +105,6 @@ function* deletePantry(action) {
 }
 
 function* deleteSpice(action) {
-    console.log( 'LOG FROM DELETE INGREDIENT SAGA', action.payload);
     try {
         yield axios.delete(`/api/ingredients/${action.payload}`)
         yield put({ type: 'GET_SPICES' })
