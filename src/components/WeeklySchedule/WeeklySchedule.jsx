@@ -49,7 +49,7 @@ function WeeklySchedule() {
         exact
         path='/schedule'
       > */}
-      <Link to="/schedule">
+      <Link to="/">
         <StyledModal
           open={open}
           onClose={(event) => setOpen(false)}
