@@ -18,6 +18,7 @@ import {
 
 function DinnerHomeTwo() {
   const [expanded, setExpanded] = React.useState(false);
+  const [open, setOpen] = React.useState('Select A Day');
   const dispatch = useDispatch();
   const favorite = useSelector((store) => store.favorite);
   const dowList = useSelector((store) => store.dow);
@@ -53,7 +54,7 @@ function DinnerHomeTwo() {
     };
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
     MySwal.fire(`Recipe added to ${dow}!`);
-    setOpen(false);
+    setOpen('Select A Day');
   };
 
   return (

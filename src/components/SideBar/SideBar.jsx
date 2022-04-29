@@ -104,11 +104,6 @@ function SideBar() {
           />
           <ListItemLink to='/search' primary='Search' icon={<Search />} />
           <ListItemLink
-            to='/schedule'
-            primary='Weekly Menu'
-            icon={<MenuBook />}
-          />
-          <ListItemLink
             to='/ingredients/refrigerator'
             primary='Refrigerator'
             icon={<Kitchen />}
