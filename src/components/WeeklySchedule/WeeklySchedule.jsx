@@ -22,7 +22,7 @@ const StyledModal = styled(Modal)({
 
 function WeeklySchedule() {
   const dispatch = useDispatch();
-  const schedule = useSelector((store) => store.dow);
+  const schedule = useSelector((store) => store.scheduleData);
   const [heading, setHeading] = useState('Weekly Schedule');
   const [open, setOpen] = useState(false);
 
@@ -33,7 +33,6 @@ function WeeklySchedule() {
 
   return (
     <>
-    
       <Tooltip
         onClick={(event) => setOpen(true)}
         title='Weekly Menu'
