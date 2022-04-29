@@ -23,6 +23,7 @@ import {
   InputLabel,
   OutlinedInput,
   Select,
+  Typography,
 } from '@mui/material';
 
 function DinnerHomeTwo() {
@@ -82,6 +83,8 @@ function DinnerHomeTwo() {
                         WFD
                       </Avatar>
                     }
+
+                    git 
                     title={favoriteRecipe.recipe_name}
                   />
                   <Link to={'/recipeDetails/' + favoriteRecipe.spoon_id}>
