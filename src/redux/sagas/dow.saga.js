@@ -39,7 +39,7 @@ function* deleteScheduleRecipe(action) {
         yield axios.delete(`/api/dow/${action.payload}`)
         yield put({ type: 'GET_SCHEDULE' })
     } catch(err) {
-        console.log(err);
+        console.log('this is the error', err);
     }
 }
 
