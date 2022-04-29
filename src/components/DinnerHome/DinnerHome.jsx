@@ -11,14 +11,10 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import {
-  Button,
-  Grid,
-} from '@mui/material';
+import { Button, Grid } from '@mui/material';
 
 function DinnerHomeTwo() {
   const [expanded, setExpanded] = React.useState(false);
-  const [open, setOpen] = React.useState('Select A Day');
   const dispatch = useDispatch();
   const favorite = useSelector((store) => store.favorite);
   const dowList = useSelector((store) => store.dow);
@@ -54,7 +50,6 @@ function DinnerHomeTwo() {
     };
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
     MySwal.fire(`Recipe added to ${dow}!`);
-    setOpen('Select A Day');
   };
 
   return (
@@ -62,7 +57,7 @@ function DinnerHomeTwo() {
       <h1>My Saved Recipes</h1>
       <Grid container spacing={6}>
         {favorite.map((favoriteRecipe) => {
-          console.log( 'this is in the loop', favoriteRecipe);
+          console.log('this is in the loop', favoriteRecipe);
           return (
             <div key={favoriteRecipe.id}>
               <Grid item xs={12} md={12} key={favoriteRecipe.id}>
@@ -73,8 +68,7 @@ function DinnerHomeTwo() {
                         WFD
                       </Avatar>
                     }
-
-                    git 
+                    git
                     title={favoriteRecipe.recipe_name}
                   />
                   <Link to={'/recipeDetails/' + favoriteRecipe.spoon_id}>
@@ -90,21 +84,22 @@ function DinnerHomeTwo() {
                       <FavoriteIcon />
                     </IconButton>
                     <select
-                          id="dow"
-                          name="dow"
-                          onChange={(event) => setDow(event.target.value)}
-                        >
-                          {dowList.map((dow) => {
-                            return (
-                              <option key={dow.id} value={dow.dow}>
-                                {dow.dow}
-                              </option>
-                            );
-                          })}
-                        </select>
-                        <Button onClick={() => saveDow(favoriteRecipe)}>
-                          Add Day
-                        </Button>
+                      id='dow'
+                      name='dow'
+                      defaultValue={dowList[0]}
+                      onChange={(event) => setDow(event.target.value)}
+                    >
+                      {dowList.map((dow) => {
+                        return (
+                          <option key={dow.id} value={dow.dow}>
+                            {dow.dow}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <Button onClick={() => saveDow(favoriteRecipe)}>
+                      Add Day
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
