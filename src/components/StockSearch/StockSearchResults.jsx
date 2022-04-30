@@ -57,6 +57,18 @@ function StockSearchResults() {
     setOpen(true);
   };
 
+  const handleFavorite = (item) => {
+    console.log( 'CLICKED HEART', item );
+    let favoriteItem = {
+      spoon_id: item.id,
+      recipe_name: item.title,
+      recipe_image: item.image,
+    }
+    dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
+    MySwal.fire(`Recipe added to favorites!`);
+    setFavoriteItem({ id: 0, image: '', title: ''});
+  }
+
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
       setOpen(false);
@@ -102,6 +114,9 @@ function StockSearchResults() {
                         WFD
                       </Avatar>
                     }
+                    titleTypographyProps={{
+                      fontWeight: 'Bold',
+                    }}
                     title={item.title}
                   />
                   <Link to={'/recipeDetails/' + item.id}>

@@ -102,6 +102,9 @@ function SingleSearchResults() {
                         WFD
                       </Avatar>
                     }
+                    titleTypographyProps={{
+                      fontWeight: 'Bold',
+                    }}
                     title={item.title}
                   />
                   <Link to={'/recipeDetails/' + item.id}>

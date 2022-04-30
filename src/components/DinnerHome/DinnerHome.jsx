@@ -12,6 +12,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Button, Grid } from '@mui/material';
+import { Box } from '@mui/system';
+
+
 
 function DinnerHomeTwo() {
   const [expanded, setExpanded] = React.useState(false);
@@ -62,14 +65,17 @@ function DinnerHomeTwo() {
           return (
             <div key={favoriteRecipe.id}>
               <Grid item xs={12} md={12} key={favoriteRecipe.id}>
-                <Card sx={{ width: 345, margin: 8 }}>
+                <Card sx={{ width: 350, margin: 8 }}>
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
                         WFD
                       </Avatar>
                     }
-                    git
+                    titleTypographyProps={{
+                      fontWeight: 'Bold',
+                      fontSize: 12
+                    }}
                     title={favoriteRecipe.recipe_name}
                   />
                   <Link to={'/recipeDetails/' + favoriteRecipe.spoon_id}>
@@ -84,6 +90,7 @@ function DinnerHomeTwo() {
                     <IconButton aria-label='add to favorites'>
                       <FavoriteIcon color="error"/>
                     </IconButton>
+                    <Box marginLeft={14}>
                     <select
                       id='dow'
                       name='dow'
@@ -101,6 +108,7 @@ function DinnerHomeTwo() {
                     <Button onClick={() => saveDow(favoriteRecipe)}>
                       Add Day
                     </Button>
+                    </Box>
                   </CardActions>
                 </Card>
               </Grid>
