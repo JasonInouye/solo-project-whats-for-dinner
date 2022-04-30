@@ -12,8 +12,17 @@ function* retrieveFavorites (){
     }   
 }
 
+function* addFavorite (action){
+    try{
+        yield axios.post('/api/dinner', action.payload);
+    } catch(err) {
+        console.log('error in addFavorite', err);
+    }
+}   
+
 function* getFavorites() {
     yield takeLatest('GET_FAVORITES', retrieveFavorites);
+    yield takeLatest('ADD_FAVORITE', addFavorite);
 }
 
 export default getFavorites;

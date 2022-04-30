@@ -9,6 +9,8 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   Box,
@@ -31,10 +33,11 @@ function SingleSearchResults() {
   const [open, setOpen] = useState(false);
   const [dow, setDow] = useState('');
   const dowList = useSelector((store) => store.dow);
+  const MySwal = withReactContent(Swal);
   const [favoriteItem, setFavoriteItem] = useState({
-    id: 0, 
-    image: '',
-    title: '',
+    spoon_id: 0, 
+    recipe_name: '',
+    recipe_image: '',
   });
 
   const searchResults = async (name) => {
@@ -65,6 +68,7 @@ function SingleSearchResults() {
       recipe_image: item.image,
     }
     dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
+    MySwal.fire(`Recipe added to favorites!`);
     setFavoriteItem({ id: 0, image: '', title: ''});
   }
 

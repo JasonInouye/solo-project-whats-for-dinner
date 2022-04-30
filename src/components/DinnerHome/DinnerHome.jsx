@@ -48,6 +48,7 @@ function DinnerHomeTwo() {
       spoon_id: favoriteRecipe.spoon_id,
       dow: dow,
     };
+    // This initiates the drop down for the days
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
     MySwal.fire(`Recipe added to ${dow}!`);
   };
@@ -81,7 +82,7 @@ function DinnerHomeTwo() {
                   </Link>
                   <CardActions disableSpacing>
                     <IconButton aria-label='add to favorites'>
-                      <FavoriteIcon />
+                      <FavoriteIcon color="error"/>
                     </IconButton>
                     <select
                       id='dow'

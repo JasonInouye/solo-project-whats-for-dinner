@@ -28,7 +28,23 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  // POST route code here
+  console.log( 'inside of Favorite POST', req.body);
+  const sqlText =`
+  INSERT INTO "recipes" ("spoon_id", "recipe_name", "recipe_image", "user_id")
+  VALUES ($1, $2, $3, $4)
+  ;`;
+const insertValues = [req.body.spoon_id, req.body.recipe_name, req.body.recipe_image, req.user.id]
+
+pool.query(sqlText, insertValues)
+.then((result) => {
+  console.log('Added to recipe table', insertValues);
+  res.sendStatus(201);
+})
+.catch((err) => {
+  console.log( 'error in Fav POST', err);
+  res.sendStatus(500);
+});
+
 });
 
 module.exports = router;
