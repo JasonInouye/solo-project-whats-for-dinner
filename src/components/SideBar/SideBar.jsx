@@ -18,15 +18,18 @@ import {
 import {
   ExpandLess,
   ExpandMore,
+  Favorite,
   Inbox,
   Inventory,
   Kitchen,
+  MeetingRoom,
   MenuBook,
   Save,
   Search,
   StarBorder,
 } from '@mui/icons-material';
-import { Collapse } from 'bootstrap';
+import { GiCoolSpices } from 'react-icons/gi'
+
 
 function Router(props) {
   const { children } = props;
@@ -47,7 +50,7 @@ Router.propTypes = {
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
-  
+
   const renderLink = React.useMemo(
     () =>
       React.forwardRef(function Link(itemProps, ref) {
@@ -89,20 +92,19 @@ function SideBar() {
   const [open, setOpen] = React.useState(true);
 
   return (
-    <Box flex={1} p={3} mt={9}>
+    <Box flex={1} p={3} mt={11}>
       <Box position='fixed'>
         <List>
           <ListItemLink
             to='/favorite'
-            primary='Saved Recipes'
-            icon={<Save />}
+            primary='Favorite Recipes'
+            icon={<Favorite />}
           />
           <ListItemLink
-            to='/stockSearch'
-            primary='Inventory Search'
-            icon={<Inventory />}
+            to='/search'
+            primary="What's for dinner?"
+            icon={<Search />}
           />
-          <ListItemLink to='/search' primary='Search' icon={<Search />} />
           <ListItemLink
             to='/ingredients/refrigerator'
             primary='Refrigerator'
@@ -111,30 +113,13 @@ function SideBar() {
           <ListItemLink
             to='/ingredients/pantry'
             primary='Pantry'
-            icon={<Kitchen />}
+            icon={<MeetingRoom />}
           />
           <ListItemLink
             to='/ingredients/spices'
             primary='Spices'
-            icon={<Kitchen />}
+            icon={<GiCoolSpices />}
           />
-          {/* <ListItemButton onClick={handleClick}>
-            <ListItemIcon>
-              <Inbox />
-            </ListItemIcon>
-            <ListItemText primary='Inbox' />
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={open} timeout='auto' unmountOnExit>
-            <List component='div' disablePadding>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <ListItemText primary='Starred' />
-              </ListItemButton>
-            </List>
-          </Collapse> */}
         </List>
       </Box>
     </Box>

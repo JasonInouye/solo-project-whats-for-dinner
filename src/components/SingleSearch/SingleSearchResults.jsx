@@ -26,6 +26,7 @@ import {
   Select,
 } from '@mui/material';
 
+
 function SingleSearchResults() {
   const [searchedRecipes, setSearchedRecipes] = useState([]);
   const dispatch = useDispatch();
