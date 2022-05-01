@@ -26,6 +26,7 @@ function* getSchedule (){
 }
 
 function* addMenuDow(action) {
+    console.log( 'this is the action', action );
     try{
         yield axios.post('/api/dow', action.payload);
         yield put({ type:'GET_SCHEDULE' });

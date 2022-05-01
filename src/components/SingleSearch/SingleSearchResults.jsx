@@ -15,15 +15,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   Box,
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  FormControl,
   Grid,
-  InputLabel,
-  OutlinedInput,
-  Select,
 } from '@mui/material';
 
 function SingleSearchResults() {
@@ -78,10 +70,9 @@ function SingleSearchResults() {
     }
   };
 
-  const saveDow = (favoriteRecipe) => {
+  const saveDow = (item) => {
     let addDow = {
-      id: favoriteRecipe.id,
-      spoon_id: favoriteRecipe.spoon_id,
+      spoon_id: item.id,
       dow: dow,
     };
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
@@ -92,6 +83,7 @@ function SingleSearchResults() {
     <div className="main-container">
       <Grid container spacing={6}>
       {searchedRecipes.map((item) => {
+        console.log( 'This is the item', item);
         return (
           <div key={item.id}>
             <Grid item xs={12} md={12}>
@@ -120,61 +112,25 @@ function SingleSearchResults() {
                       <FavoriteIcon />
                     </IconButton>
                     {/* <Button onClick={handleClickOpen}>Select a Day</Button> */}
-                    <Dialog
-                      disableEscapeKeyDown
-                      open={open}
-                      onClose={handleClose}
-                      sx={{ backgroundColor: 'transparent' }}
+                    <Box marginLeft={14}>
+                    <select
+                      id='dow'
+                      name='dow'
+                      defaultValue={dowList[0]}
+                      onChange={(event) => setDow(event.target.value)}
                     >
-                      <DialogTitle>Choose a Day</DialogTitle>
-                      <DialogContent>
-                        <Box
-                          component='form'
-                          sx={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            backgroundColor: 'transparent',
-                          }}
-                        >
-                          <FormControl
-                            sx={{
-                              m: 5,
-                              minWidth: 240,
-                              backgroundColor: 'transparent',
-                            }}
-                          >
-                            <InputLabel htmlFor='demo-dialog-native'>
-                              Day
-                            </InputLabel>
-                            <Select
-                              native
-                              value={dow.dow}
-                              onChange={(event) => setDow(event.target.value)}
-                              input={
-                                <OutlinedInput
-                                  label='Dow'
-                                  id='demo-dialog-native'
-                                />
-                              }
-                            >
-                              {dowList.map((dow) => {
-                                return (
-                                  <option key={dow.id} value={dow.dow}>
-                                    {dow.dow}
-                                  </option>
-                                );
-                              })}
-                            </Select>
-                          </FormControl>
-                        </Box>
-                      </DialogContent>
-                      <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={() => saveDow(favoriteRecipe)}>
-                          Ok
-                        </Button>
-                      </DialogActions>
-                    </Dialog>
+                      {dowList.map((dow) => {
+                        return (
+                          <option key={dow.id} value={dow.dow}>
+                            {dow.dow}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <Button onClick={() => saveDow(item)}>
+                      Add Day
+                    </Button>
+                    </Box>
                   </CardActions>
                 </Card>
             </Grid>
