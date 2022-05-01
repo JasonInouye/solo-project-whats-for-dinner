@@ -95,7 +95,7 @@ function SingleSearchResults() {
         return (
           <div key={item.id}>
             <Grid item xs={12} md={12}>
-            <Card sx={{ width: 345, margin: 8 }}>
+            <Card sx={{ width: 345, margin: 8, borderRadius: '16px' }}>
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
