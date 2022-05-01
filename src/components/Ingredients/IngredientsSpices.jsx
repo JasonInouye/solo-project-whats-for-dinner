@@ -58,7 +58,7 @@ function IngredientsSpices() {
         type='search'
         value={newSpicesItem.ingredient}
         onChange={handleIngredientItem}
-        sx={{ mt:2, mb:2 }}
+        sx={{ mt:2, mb:2, width:400  }}
       />
     </Box>
     <Button variant="contained" endIcon={<Add />} onClick={addIngredient} color="error" size="small">

@@ -1,12 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import {useEffect} from "react";
-import StockSearchResults from "./StockSearchResults";
-import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom'
+import React from 'react';
+import styled from 'styled-components';
+import { useEffect } from 'react';
+import StockSearchResults from './StockSearchResults';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 function StockSearch() {
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
   const allItems = useSelector((store) => store.ingredients);
   const history = useHistory();
 
@@ -15,23 +16,23 @@ function StockSearch() {
     dispatch({ type: 'GET_ALL_STOCK' });
   }, []);
 
-  
-
   const handleEntireStock = (all_ingredients) => {
-    console.log('This is all of your stock items', all_ingredients );
-    history.push('/stockSearch/' + all_ingredients)
-  }
+    console.log('This is all of your stock items', all_ingredients);
+    history.push('/stockSearch/' + all_ingredients);
+  };
 
   return (
-    <div className="main-container">
+    <div className='main-container'>
       <h1>Entire Stock</h1>
       <div>
         <ul>
           {allItems.map((item) => {
             return (
               <div key={item.id}>
-                <li key={item.all_ingredients}>{item.all_ingredients}</li>
-                <button onClick={() => handleEntireStock(item.all_ingredients)}>Submit</button>
+                {/* <li key={item.all_ingredients}>{item.all_ingredients}</li> */}
+                <Button variant='contained' size='large' color="error" sx={{ mt: 3 }} onClick={() => handleEntireStock(item.all_ingredients)}>
+                  Search Using My Ingredients
+                </Button>
               </div>
             );
           })}
