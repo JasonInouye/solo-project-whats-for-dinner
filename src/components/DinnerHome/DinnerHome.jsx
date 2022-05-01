@@ -87,7 +87,12 @@ function DinnerHomeTwo() {
                     />
                   </Link>
                   <CardActions disableSpacing>
-                    <IconButton aria-label='add to favorites'>
+                    <IconButton aria-label='add to favorites'                     onClick={(event) =>
+                      dispatch({
+                        type: 'DELETE_FAVORITE',
+                        payload: favoriteRecipe.id,
+                      })
+                    }>
                       <FavoriteIcon color="error"/>
                     </IconButton>
                     <Box marginLeft={14}>

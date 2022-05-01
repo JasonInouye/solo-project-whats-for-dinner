@@ -44,7 +44,23 @@ pool.query(sqlText, insertValues)
   console.log( 'error in Fav POST', err);
   res.sendStatus(500);
 });
+});
 
+/** DELETE FAVORITE **/
+router.delete ('/:id', (req,res) => {
+  console.log( 'log from delete',req.params.id, req.user.id, req.user );
+  const queryText = `
+  DELETE FROM "recipes"
+  WHERE "user_id" = $1 AND
+  "id" = $2
+  ;`;
+  const queryValues = [req.user.id, req.params.id];
+  pool.query(queryText, queryValues) 
+    .then(() => { res.sendStatus(200);})
+    .catch((err) => {
+      console.log( 'Error in DELETE', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

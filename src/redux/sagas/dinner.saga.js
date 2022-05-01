@@ -20,9 +20,20 @@ function* addFavorite (action){
     }
 }   
 
+// This is the delete for refrigerator
+function* deleteFavorite(action) {
+    try {
+        yield axios.delete(`/api/dinner/${action.payload}`)
+        yield put({ type: 'GET_FAVORITES' })
+    } catch(err) {
+        console.log(err);
+    }
+}
+
 function* getFavorites() {
     yield takeLatest('GET_FAVORITES', retrieveFavorites);
     yield takeLatest('ADD_FAVORITE', addFavorite);
+    yield takeLatest('DELETE_FAVORITE', deleteFavorite);
 }
 
 export default getFavorites;
