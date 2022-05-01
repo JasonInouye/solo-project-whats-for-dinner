@@ -16,9 +16,14 @@ import {
   ListItemText,
 } from '@mui/material';
 import {
+  Deblur,
+  DinnerDining,
   ExpandLess,
   ExpandMore,
   Favorite,
+  Gradient,
+  Grain,
+  Grass,
   Inbox,
   Inventory,
   Kitchen,
@@ -98,27 +103,27 @@ function SideBar() {
           <ListItemLink
             to='/favorite'
             primary='Favorite Recipes'
-            icon={<Favorite />}
+            icon={<Favorite color="error"/>}
           />
           <ListItemLink
             to='/search'
             primary="What's for dinner?"
-            icon={<Search />}
+            icon={<DinnerDining color="error"/>}
           />
           <ListItemLink
             to='/ingredients/refrigerator'
             primary='Refrigerator'
-            icon={<Kitchen />}
+            icon={<Kitchen color="error"/>}
           />
           <ListItemLink
             to='/ingredients/pantry'
             primary='Pantry'
-            icon={<MeetingRoom />}
+            icon={<MeetingRoom color="error"/>}
           />
           <ListItemLink
             to='/ingredients/spices'
             primary='Spices'
-            icon={<GiCoolSpices />}
+            icon={<Grain color="error"/>}
           />
         </List>
       </Box>

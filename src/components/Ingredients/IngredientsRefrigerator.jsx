@@ -45,7 +45,7 @@ function IngredientsRefrigerator() {
 
   return (
     <div className='main-container'>
-    <Typography variant="h5">Refrigerator</Typography>
+    <Typography variant="h4">Refrigerator</Typography>
     <Box
       sx={{
         width: 500,
