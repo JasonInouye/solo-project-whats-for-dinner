@@ -17,7 +17,6 @@ function* retrieveDow (){
 function* getSchedule (){
     try {
         const schedule = yield axios.get('/api/dow/schedule');
-        console.log('SAGA GET SCHEDULE LOG', schedule.data);
         yield put({ type:'SET_SCHEDULE', payload: schedule.data });
 
     } catch (err){
