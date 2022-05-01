@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {useState} from "react";
 import {useHistory} from 'react-router-dom';
+import StockSearch from '../StockSearch/StockSearch';
 
 function SingleSearch() {
   const [search, setSearch] = useState('');
@@ -21,6 +22,7 @@ function SingleSearch() {
           <input type="text" value={search} onChange={(event) => setSearch(event.target.value)}/>
         </div>
       </FormStyle>
+      <StockSearch />
     </div>
   );
 }

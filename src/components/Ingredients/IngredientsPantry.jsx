@@ -47,7 +47,7 @@ function IngredientsPantry() {
 
   return (
     <div className='main-container'>
-      <Typography variant="h5">Pantry</Typography>
+      <Typography variant="h4">Pantry</Typography>
       <Box
         sx={{
           width: 500,

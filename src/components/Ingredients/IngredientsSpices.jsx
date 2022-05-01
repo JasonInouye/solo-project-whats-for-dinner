@@ -45,7 +45,7 @@ function IngredientsSpices() {
 
   return (
     <div className='main-container'>
-    <Typography variant="h5">Spices</Typography>
+    <Typography variant="h4">Spices</Typography>
     <Box
       sx={{
         width: 500,
