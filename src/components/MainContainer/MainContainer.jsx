@@ -16,7 +16,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import DinnerHomeTwo from '../DinnerHome/DinnerHome';
+import DinnerHome from '../DinnerHome/DinnerHome';
 import WeeklySchedule from '../WeeklySchedule/WeeklySchedule';
 import RecipeDetails from '../RecipeDetails/RecipeDetails';
 import IngredientsRefrigerator from '../Ingredients/IngredientsRefrigerator';
@@ -81,7 +81,7 @@ function MainContainer() {
           exact
           path='/favorite'
         >
-          <DinnerHomeTwo />
+          <DinnerHome />
         </ProtectedRoute>
 
         <ProtectedRoute

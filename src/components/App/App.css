@@ -100,3 +100,14 @@
     overflow: hidden;
   }
 
+  .instructions {
+    width: 300px;
+    padding: 50px;
+    margin: 20px;
+  }
+  .ingredients {
+    width: 300px;
+    padding: 50px;
+    margin: 20px;
+  }
+

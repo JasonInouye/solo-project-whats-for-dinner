@@ -14,9 +14,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { Button, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 
-
-
-function DinnerHomeTwo() {
+function DinnerHome() {
   const [expanded, setExpanded] = React.useState(false);
   const dispatch = useDispatch();
   const favorite = useSelector((store) => store.favorite);
@@ -45,7 +43,6 @@ function DinnerHomeTwo() {
   };
 
   const saveDow = (favoriteRecipe) => {
-    console.log('CLICKED', favoriteRecipe);
     let addDow = {
       id: favoriteRecipe.id,
       spoon_id: favoriteRecipe.spoon_id,
@@ -61,11 +58,10 @@ function DinnerHomeTwo() {
       <h1>My Saved Recipes</h1>
       <Grid container spacing={6}>
         {favorite.map((favoriteRecipe) => {
-          console.log('this is in the loop', favoriteRecipe);
           return (
             <div key={favoriteRecipe.id}>
               <Grid item xs={12} md={12} key={favoriteRecipe.id}>
-                <Card  sx={{ width: 350, margin: 8, borderRadius: '16px'}}>
+                <Card sx={{ width: 350, margin: 8, borderRadius: '16px' }}>
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
@@ -74,7 +70,7 @@ function DinnerHomeTwo() {
                     }
                     titleTypographyProps={{
                       fontWeight: 'Bold',
-                      fontSize: 12
+                      fontSize: 12,
                     }}
                     title={favoriteRecipe.recipe_name}
                   />
@@ -83,36 +79,38 @@ function DinnerHomeTwo() {
                       component='img'
                       height='20%'
                       image={favoriteRecipe.recipe_image}
-                      alt='Paella dish'
                     />
                   </Link>
                   <CardActions disableSpacing>
-                    <IconButton aria-label='add to favorites'                     onClick={(event) =>
-                      dispatch({
-                        type: 'DELETE_FAVORITE',
-                        payload: favoriteRecipe.id,
-                      })
-                    }>
-                      <FavoriteIcon color="error"/>
+                    <IconButton
+                      aria-label='add to favorites'
+                      onClick={(event) =>
+                        dispatch({
+                          type: 'DELETE_FAVORITE',
+                          payload: favoriteRecipe.id,
+                        })
+                      }
+                    >
+                      <FavoriteIcon color='error' />
                     </IconButton>
                     <Box marginLeft={14}>
-                    <select
-                      id='dow'
-                      name='dow'
-                      defaultValue={dowList[0]}
-                      onChange={(event) => setDow(event.target.value)}
-                    >
-                      {dowList.map((dow) => {
-                        return (
-                          <option key={dow.id} value={dow.dow}>
-                            {dow.dow}
-                          </option>
-                        );
-                      })}
-                    </select>
-                    <Button onClick={() => saveDow(favoriteRecipe)}>
-                      Add Day
-                    </Button>
+                      <select
+                        id='dow'
+                        name='dow'
+                        defaultValue={dowList[0]}
+                        onChange={(event) => setDow(event.target.value)}
+                      >
+                        {dowList.map((dow) => {
+                          return (
+                            <option key={dow.id} value={dow.dow}>
+                              {dow.dow}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      <Button onClick={() => saveDow(favoriteRecipe)}>
+                        Add Day
+                      </Button>
                     </Box>
                   </CardActions>
                 </Card>
@@ -125,4 +123,4 @@ function DinnerHomeTwo() {
   );
 }
 
-export default DinnerHomeTwo;
+export default DinnerHome;
