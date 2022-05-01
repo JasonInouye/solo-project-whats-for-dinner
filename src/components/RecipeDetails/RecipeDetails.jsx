@@ -1,12 +1,14 @@
 import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 function RecipeDetails() {
   let params = useParams();
   const [recipeDetails, setRecipeDetails] = useState({});
   const [selectedButton, setSelectedButton] = useState("instructions");
+  const [loading, setLoading] = useState(false);
 
   const fetchDetails = async () => {
     const data = await fetch(
@@ -19,13 +21,23 @@ function RecipeDetails() {
   };
 
   useEffect(() => {
-    fetchDetails();
+    setLoading(true)
+    fetchDetails(() => {
+      setLoading(false)
+    }, 1000);
   }, [params.id]);
 
   console.log("this is the JSON for details", recipeDetails);
 
   return (
     <div className="main-container">
+      {
+        loading === true ? <div><ClipLoader color={'#9B9B9B'} loading={loading} size={150} /></div>
+        
+        :   
+      
+      
+      <>
       <div>
         <h2>{recipeDetails.title}</h2>
         <img src={recipeDetails?.image} alt="RecipeImage" />
@@ -60,7 +72,8 @@ function RecipeDetails() {
             return <li key={ingredient.id}>{ingredient.original}</li>;
           })}
         </ul>
-        )}
+        )}</>
+        }
     </div>
   );
 }
