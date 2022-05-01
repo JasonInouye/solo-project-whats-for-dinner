@@ -9,6 +9,8 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   Box,
@@ -29,6 +31,7 @@ function StockSearchResults() {
   const [stockRecipes, setStockRecipes] = useState([]);
   const dispatch = useDispatch();
   const params = useParams();
+  const MySwal = withReactContent(Swal);
   const [open, setOpen] = useState(false);
   const [dow, setDow] = useState('');
   const dowList = useSelector((store) => store.dow);
@@ -58,16 +61,16 @@ function StockSearchResults() {
   };
 
   const handleFavorite = (item) => {
-    console.log( 'CLICKED HEART', item );
+    console.log('CLICKED HEART', item);
     let favoriteItem = {
       spoon_id: item.id,
       recipe_name: item.title,
       recipe_image: item.image,
-    }
+    };
     dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
     MySwal.fire(`Recipe added to favorites!`);
-    setFavoriteItem({ id: 0, image: '', title: ''});
-  }
+    setFavoriteItem({ id: 0, image: '', title: '' });
+  };
 
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
@@ -128,12 +131,10 @@ function StockSearchResults() {
                     />
                   </Link>
                   <CardActions disableSpacing>
-                    <IconButton aria-label='add to favorites'>
-                      <FavoriteIcon />
-                    </IconButton>
-                    <Typography>
-                      {percentage}
-                    </Typography>
+                    <Button onClick={() => handleFavorite(item)}>
+                      Favorite Recipe
+                    </Button>
+                    <Typography>{percentage}</Typography>
                     {/* <Button onClick={handleClickOpen}>Select a Day</Button> */}
                     <Dialog
                       disableEscapeKeyDown

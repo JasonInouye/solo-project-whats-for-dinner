@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -26,7 +26,6 @@ import {
   Select,
 } from '@mui/material';
 
-
 function SingleSearchResults() {
   const [searchedRecipes, setSearchedRecipes] = useState([]);
   const dispatch = useDispatch();
@@ -36,7 +35,7 @@ function SingleSearchResults() {
   const dowList = useSelector((store) => store.dow);
   const MySwal = withReactContent(Swal);
   const [favoriteItem, setFavoriteItem] = useState({
-    spoon_id: 0, 
+    spoon_id: 0,
     recipe_name: '',
     recipe_image: '',
   });
@@ -61,16 +60,16 @@ function SingleSearchResults() {
   };
 
   const handleFavorite = (item) => {
-    console.log( 'CLICKED HEART', item );
+    console.log('CLICKED HEART', item);
     let favoriteItem = {
       spoon_id: item.id,
       recipe_name: item.title,
       recipe_image: item.image,
-    }
+    };
     dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
     MySwal.fire(`Recipe added to favorites!`);
-    setFavoriteItem({ id: 0, image: '', title: ''});
-  }
+    setFavoriteItem({ id: 0, image: '', title: '' });
+  };
 
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
@@ -89,13 +88,13 @@ function SingleSearchResults() {
   };
 
   return (
-    <div className="main-container">
+    <div className='main-container'>
       <Grid container spacing={6}>
-      {searchedRecipes.map((item) => {
-        return (
-          <div key={item.id}>
-            <Grid item xs={12} md={12}>
-            <Card sx={{ width: 345, margin: 8, borderRadius: '16px' }}>
+        {searchedRecipes.map((item) => {
+          return (
+            <div key={item.id}>
+              <Grid item xs={12} md={12}>
+                <Card sx={{ width: 345, margin: 8, borderRadius: '16px' }}>
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
@@ -116,9 +115,9 @@ function SingleSearchResults() {
                     />
                   </Link>
                   <CardActions disableSpacing>
-                    <IconButton aria-label='add to favorites' onClick={() => handleFavorite(item)}>
-                      <FavoriteIcon />
-                    </IconButton>
+                    <Button onClick={() => handleFavorite(item)}>
+                      Favorite Recipe
+                    </Button>
                     {/* <Button onClick={handleClickOpen}>Select a Day</Button> */}
                     <Dialog
                       disableEscapeKeyDown
@@ -177,10 +176,10 @@ function SingleSearchResults() {
                     </Dialog>
                   </CardActions>
                 </Card>
-            </Grid>
-          </div>
-        );
-      })}
+              </Grid>
+            </div>
+          );
+        })}
       </Grid>
     </div>
   );
