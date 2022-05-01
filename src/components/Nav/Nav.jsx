@@ -26,9 +26,6 @@ function Nav() {
             <Link className="navLink" to="/favorite">
               Home
             </Link>
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
             <LogOutButton className="navLink" />
           </>
         )}
