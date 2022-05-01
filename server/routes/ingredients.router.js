@@ -11,7 +11,7 @@ router.get('/refrigerator', (req, res) => {
     *
   FROM "ingredients_instock"
   WHERE UPPER("location") = 'REFRIGERATOR'
-  ORDER by "ingredient"
+  ORDER by UPPER("ingredient")
   ;`;
   pool.query(query)
   .then( result => {
@@ -30,7 +30,7 @@ router.get('/pantry', (req, res) => {
     *
   FROM "ingredients_instock"
   WHERE UPPER("location") = 'PANTRY'
-  ORDER by "ingredient"
+  ORDER by UPPER("ingredient")
   ;`;
   pool.query(query)
   .then( result => {
@@ -70,7 +70,7 @@ router.get('/spices', (req, res) => {
     *
   FROM "ingredients_instock"
   WHERE UPPER("location") = 'SPICES'
-  ORDER by "ingredient"
+  ORDER by UPPER("ingredient")
   ;`;
   pool.query(query)
   .then( result => {
