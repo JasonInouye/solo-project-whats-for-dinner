@@ -55,15 +55,15 @@ function WeeklySchedule() {
           aria-labelledby='modal-modal-title'
           aria-describedby='modal-modal-description'
         >
-          <Box width={400} height={610} bgcolor='white' p={1} borderRadius={3}>
-            <Typography variant='h6'>
-              <h2>{heading}</h2>
+          <Box width={400} height={575} bgcolor='white' p={1} mt={6} borderRadius={3}>
+            <Typography variant='h4'>
+              {heading}
             </Typography>
             <Box sx={{ mt:1 }}>
               {schedule?.map((schedule) => {
                 return (
                   <div key={schedule.id}>
-                    <Typography variant='h6' sx={{ fontWeight: '500' }}>
+                    <Typography variant='subtitle1' sx={{ fontWeight: '500' }}>
                       {schedule.dow}
                     </Typography>
                     <Grid container>
