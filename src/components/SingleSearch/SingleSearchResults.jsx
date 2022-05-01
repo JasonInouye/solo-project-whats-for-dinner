@@ -9,6 +9,8 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   Box,
@@ -31,19 +33,22 @@ function SingleSearchResults() {
   const [open, setOpen] = useState(false);
   const [dow, setDow] = useState('');
   const dowList = useSelector((store) => store.dow);
+  const MySwal = withReactContent(Swal);
+  const [favoriteItem, setFavoriteItem] = useState({
+    spoon_id: 0, 
+    recipe_name: '',
+    recipe_image: '',
+  });
 
   const searchResults = async (name) => {
-    console.log("this is the Name inside of FETCH", name);
     const data = await fetch(
       
       //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
       // `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${params.id}/information?rapidapi-key=${process.env.REACT_RAPID_API_KEY}`
     );
-    //console.log("this is the data", data);
     const recipes = await data.json();
     setSearchedRecipes(recipes.results);
-    console.log('this is the recipes results', recipes.results);
   };
 
   useEffect(() => {
@@ -55,6 +60,18 @@ function SingleSearchResults() {
     setOpen(true);
   };
 
+  const handleFavorite = (item) => {
+    console.log( 'CLICKED HEART', item );
+    let favoriteItem = {
+      spoon_id: item.id,
+      recipe_name: item.title,
+      recipe_image: item.image,
+    }
+    dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
+    MySwal.fire(`Recipe added to favorites!`);
+    setFavoriteItem({ id: 0, image: '', title: ''});
+  }
+
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
       setOpen(false);
@@ -62,7 +79,6 @@ function SingleSearchResults() {
   };
 
   const saveDow = (favoriteRecipe) => {
-    console.log('CLICKED');
     let addDow = {
       id: favoriteRecipe.id,
       spoon_id: favoriteRecipe.spoon_id,
@@ -76,17 +92,19 @@ function SingleSearchResults() {
     <div className="main-container">
       <Grid container spacing={6}>
       {searchedRecipes.map((item) => {
-        console.log( item );
         return (
           <div key={item.id}>
             <Grid item xs={12} md={12}>
-            <Card sx={{ width: 345, margin: 8 }}>
+            <Card sx={{ width: 345, margin: 8, borderRadius: '16px' }}>
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
                         WFD
                       </Avatar>
                     }
+                    titleTypographyProps={{
+                      fontWeight: 'Bold',
+                    }}
                     title={item.title}
                   />
                   <Link to={'/recipeDetails/' + item.id}>
@@ -98,7 +116,7 @@ function SingleSearchResults() {
                     />
                   </Link>
                   <CardActions disableSpacing>
-                    <IconButton aria-label='add to favorites'>
+                    <IconButton aria-label='add to favorites' onClick={() => handleFavorite(item)}>
                       <FavoriteIcon />
                     </IconButton>
                     {/* <Button onClick={handleClickOpen}>Select a Day</Button> */}

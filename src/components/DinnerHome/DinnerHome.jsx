@@ -11,14 +11,13 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import {
-  Button,
-  Grid,
-} from '@mui/material';
+import { Button, Grid } from '@mui/material';
+import { Box } from '@mui/system';
+
+
 
 function DinnerHomeTwo() {
   const [expanded, setExpanded] = React.useState(false);
-  const [open, setOpen] = React.useState('Select A Day');
   const dispatch = useDispatch();
   const favorite = useSelector((store) => store.favorite);
   const dowList = useSelector((store) => store.dow);
@@ -52,9 +51,9 @@ function DinnerHomeTwo() {
       spoon_id: favoriteRecipe.spoon_id,
       dow: dow,
     };
+    // This initiates the drop down for the days
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
     MySwal.fire(`Recipe added to ${dow}!`);
-    setOpen('Select A Day');
   };
 
   return (
@@ -62,19 +61,21 @@ function DinnerHomeTwo() {
       <h1>My Saved Recipes</h1>
       <Grid container spacing={6}>
         {favorite.map((favoriteRecipe) => {
-          console.log( 'this is in the loop', favoriteRecipe);
+          console.log('this is in the loop', favoriteRecipe);
           return (
             <div key={favoriteRecipe.id}>
               <Grid item xs={12} md={12} key={favoriteRecipe.id}>
-                <Card sx={{ width: 345, margin: 8 }}>
+                <Card  sx={{ width: 350, margin: 8, borderRadius: '16px'}}>
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
                         WFD
                       </Avatar>
                     }
-
-                    git 
+                    titleTypographyProps={{
+                      fontWeight: 'Bold',
+                      fontSize: 12
+                    }}
                     title={favoriteRecipe.recipe_name}
                   />
                   <Link to={'/recipeDetails/' + favoriteRecipe.spoon_id}>
@@ -86,25 +87,33 @@ function DinnerHomeTwo() {
                     />
                   </Link>
                   <CardActions disableSpacing>
-                    <IconButton aria-label='add to favorites'>
-                      <FavoriteIcon />
+                    <IconButton aria-label='add to favorites'                     onClick={(event) =>
+                      dispatch({
+                        type: 'DELETE_FAVORITE',
+                        payload: favoriteRecipe.id,
+                      })
+                    }>
+                      <FavoriteIcon color="error"/>
                     </IconButton>
+                    <Box marginLeft={14}>
                     <select
-                          id="dow"
-                          name="dow"
-                          onChange={(event) => setDow(event.target.value)}
-                        >
-                          {dowList.map((dow) => {
-                            return (
-                              <option key={dow.id} value={dow.dow}>
-                                {dow.dow}
-                              </option>
-                            );
-                          })}
-                        </select>
-                        <Button onClick={() => saveDow(favoriteRecipe)}>
-                          Add Day
-                        </Button>
+                      id='dow'
+                      name='dow'
+                      defaultValue={dowList[0]}
+                      onChange={(event) => setDow(event.target.value)}
+                    >
+                      {dowList.map((dow) => {
+                        return (
+                          <option key={dow.id} value={dow.dow}>
+                            {dow.dow}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <Button onClick={() => saveDow(favoriteRecipe)}>
+                      Add Day
+                    </Button>
+                    </Box>
                   </CardActions>
                 </Card>
               </Grid>
