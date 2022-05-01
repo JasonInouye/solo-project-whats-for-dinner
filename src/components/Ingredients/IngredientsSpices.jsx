@@ -68,7 +68,7 @@ function IngredientsSpices() {
       <Table sx={{ minWidth: 650 }} aria-label='simple table'>
         <TableHead>
           <TableRow>
-            <TableCell align='Left' sx={{ width: 100 }}>
+            <TableCell sx={{ width: 100 }}>
               Ingredients
             </TableCell>
           </TableRow>

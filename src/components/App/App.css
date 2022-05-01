@@ -101,13 +101,14 @@
   }
 
   .instructions {
-    width: 300px;
-    padding: 50px;
-    margin: 20px;
+    width: 600px;
+    padding: 20px;
+    margin: 0px;
   }
+
   .ingredients {
     width: 300px;
-    padding: 50px;
-    margin: 20px;
+    padding: 20px;
+    margin: 0px;
   }
 
