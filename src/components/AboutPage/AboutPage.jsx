@@ -36,7 +36,7 @@ function AboutPage() {
         <Stack spacing={4}>
           <Box>
             <Typography variant='h4'>Future Considerations:</Typography>
-            <Typography variant='subtitle1' sx={{ mt: 2 }}>
+            <Typography variant='subtitle1' sx={{ width: 400, mt: 2 }}>
               Add a shopping list function that will create a shopping list of
               ingredients that you are missing after planning the menu for the
               week.
@@ -122,7 +122,7 @@ function AboutPage() {
               </Typography>
               <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
                 <a
-                  href='https://www.linkedin.com/in/jason-inouye/'
+                  href='https://www.linkedin.com/in/jason-inouye-9744938a/'
                   target='_blank'
                 >
                   <LinkedInIcon fontSize='large' sx={{ color: 'blue' }} />

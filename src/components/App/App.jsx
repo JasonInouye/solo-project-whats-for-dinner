@@ -12,6 +12,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import './App.css';
 
 import { Box, Stack } from '@mui/material';
+import SideBarNo from '../SideBarNo/SideBarNo';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,13 +30,25 @@ function App() {
           <Nav />
           <body>
             <Stack direction='row' spacing={3} justifyContent='space-between'>
-              <SideBar />
+              {user.id ? (
+                // If the user is already logged in,
+                // redirect them to the /user page
+                <SideBar />
+              ) : (
+                // Otherwise, show the registration page
+                <SideBarNo />
+              )}
 
               <MainContainer />
             </Stack>
-
-            <WeeklySchedule />
-
+            {user.id ? (
+                // If the user is already logged in,
+                // redirect them to the /user page
+                <WeeklySchedule />
+              ) : (
+                // Otherwise, show the registration page
+                <SideBarNo />
+              )}
             {/* <Footer /> */}
           </body>
         </div>
