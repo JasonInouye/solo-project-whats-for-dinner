@@ -99,9 +99,6 @@ function AboutPage() {
                 <ListItemText primary='Dane my Instructor' />
               </ListItem>
               <ListItem>
-                <ListItemText primary='The entire Prime Staff' />
-              </ListItem>
-              <ListItem>
                 <ListItemText primary='The Butler Cohort' />
               </ListItem>
               <ListItem>
