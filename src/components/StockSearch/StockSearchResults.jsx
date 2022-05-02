@@ -38,8 +38,9 @@ function StockSearchResults() {
 
   const stockResults = async (name) => {
     const data = await fetch(
-      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_API_KEY}&ranking=2&number=20&ingredients=${name}`
+      //`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_API_KEY}&ranking=2&number=20&ingredients=${name}`
       //`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&ranking=2&number=20&ingredients=${name}`
+      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&ranking=2&number=20&ingredients=${name}`
     );
     //console.log("this is the data", data);
     const recipes = await data.json();
