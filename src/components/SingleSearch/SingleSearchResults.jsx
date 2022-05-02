@@ -7,9 +7,11 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   Box,
   Button,
@@ -38,18 +40,15 @@ function SingleSearchResults() {
     recipe_image: '',
   });
 
-  // const searchResults = async (name) => {
-  //   const data = await fetch(
-  //     //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
-  //     //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
-  //     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
-  //   );
-  //   const recipes = await data.json();
-  //   setSearchedRecipes(recipes.results);
-  // };
-  const searchResults =() => {
-    dispatch({ type: 'FETCH_SINGLE', payload: })
-  }
+  const searchResults = async (name) => {
+    const data = await fetch(
+      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
+      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
+    );
+    const recipes = await data.json();
+    setSearchedRecipes(recipes.results);
+  };
 
   useEffect(() => {
     searchResults(params.searchItem);
