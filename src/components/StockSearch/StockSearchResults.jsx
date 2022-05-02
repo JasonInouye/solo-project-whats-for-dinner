@@ -7,11 +7,9 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   Box,
   Button,
@@ -21,11 +19,13 @@ import {
   DialogTitle,
   FormControl,
   Grid,
+  Icon,
   InputLabel,
   OutlinedInput,
   Select,
   Typography,
 } from '@mui/material';
+import { Favorite, Percent } from '@mui/icons-material';
 
 function StockSearchResults() {
   const [stockRecipes, setStockRecipes] = useState([]);
@@ -37,7 +37,6 @@ function StockSearchResults() {
   const dowList = useSelector((store) => store.dow);
 
   const stockResults = async (name) => {
-    console.log('This is inside of the FETCH', name);
     const data = await fetch(
       //`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_API_KEY}&ranking=2&number=20&ingredients=${name}`
       `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&ranking=2&number=20&ingredients=${name}`
@@ -46,7 +45,6 @@ function StockSearchResults() {
     const recipes = await data.json();
     //console.log('this is the recipes results 1', recipes);
     setStockRecipes(recipes);
-    console.log('this is the recipes results 2', recipes);
   };
 
   useEffect(() => {
@@ -61,14 +59,13 @@ function StockSearchResults() {
   };
 
   const handleFavorite = (item) => {
-    console.log('CLICKED HEART', item);
     let favoriteItem = {
       spoon_id: item.id,
       recipe_name: item.title,
       recipe_image: item.image,
     };
     dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
-    MySwal.fire(`Recipe added to favorites!`);
+    MySwal.fire({title: `Recipe added to favorites!`,confirmButtonColor: "#FF0000"});
     setFavoriteItem({ id: 0, image: '', title: '' });
   };
 
@@ -79,7 +76,6 @@ function StockSearchResults() {
   };
 
   const saveDow = (favoriteRecipe) => {
-    console.log('CLICKED');
     let addDow = {
       id: favoriteRecipe.id,
       spoon_id: favoriteRecipe.spoon_id,
@@ -98,9 +94,8 @@ function StockSearchResults() {
               (Number(item.usedIngredientCount) +
                 Number(item.missedIngredientCount))) *
               100
-          ).toFixed(2);
+          ).toFixed(0);
 
-          console.log('This is the percentage', percentage);
           return (
             <div key={item.id}>
               <Grid item xs={12} md={12}>
@@ -134,7 +129,8 @@ function StockSearchResults() {
                     <Button onClick={() => handleFavorite(item)}>
                       Favorite Recipe
                     </Button>
-                    <Typography>{percentage}</Typography>
+                    <Typography sx={{ ml: 17, fontSize: 18, fontWeight: '500' }}>{percentage}</Typography>
+                    <Icon><Percent color='error' /></Icon>
                     {/* <Button onClick={handleClickOpen}>Select a Day</Button> */}
                     <Dialog
                       disableEscapeKeyDown

@@ -67,7 +67,7 @@ function SingleSearchResults() {
       recipe_image: item.image,
     };
     dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
-    MySwal.fire(`Recipe added to favorites!`);
+    MySwal.fire({title: `Recipe added to favorites!`,confirmButtonColor: "#FF0000"});
     setFavoriteItem({ id: 0, image: '', title: '' });
   };
 
