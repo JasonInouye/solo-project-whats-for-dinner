@@ -55,7 +55,7 @@ function DinnerHome() {
 
   return (
     <div className='main-container'>
-      <h1>My Saved Recipes</h1>
+      <h1>My Favorite Recipes</h1>
       <Grid container spacing={6}>
         {favorite.map((favoriteRecipe) => {
           return (
