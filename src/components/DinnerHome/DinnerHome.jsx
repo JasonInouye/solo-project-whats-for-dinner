@@ -50,7 +50,7 @@ function DinnerHome() {
     };
     // This initiates the drop down for the days
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
-    MySwal.fire({title: `Recipe added to favorites!`,confirmButtonColor: "#FF0000"});
+    MySwal.fire({title: `Recipe added to ${dow}`,confirmButtonColor: "#FF0000"});
   };
 
   return (
