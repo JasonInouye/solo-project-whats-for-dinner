@@ -7,11 +7,9 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   Box,
   Button,
