@@ -107,7 +107,7 @@ function SideBar() {
           />
           <ListItemLink
             to='/search'
-            primary="What's for dinner?"
+            primary="What's For Dinner?"
             icon={<DinnerDining color="error"/>}
           />
           <ListItemLink

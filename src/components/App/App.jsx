@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,6 +7,8 @@ import Nav from '../Nav/Nav';
 import SideBar from '../SideBar/SideBar';
 import MainContainer from '../MainContainer/MainContainer';
 import WeeklySchedule from '../WeeklySchedule/WeeklySchedule';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import AboutPage from '../AboutPage/AboutPage';
 import './App.css';
 
 import { Box, Stack } from '@mui/material';
@@ -27,10 +29,14 @@ function App() {
           <Nav />
           <body>
           <Stack direction='row' spacing={3} justifyContent='space-between'>
+          <ProtectedRoute>
             <SideBar />
+          </ProtectedRoute>
             <MainContainer />
           </Stack>
-          <WeeklySchedule />
+          <ProtectedRoute>
+            <WeeklySchedule />
+          </ProtectedRoute>
           {/* <Footer /> */}
           </body>
         </div>

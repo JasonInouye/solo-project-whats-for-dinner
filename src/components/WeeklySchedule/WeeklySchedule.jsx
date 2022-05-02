@@ -68,6 +68,7 @@ function WeeklySchedule() {
                     </Typography>
                     <Grid container>
                       <Grid item>
+
                         <Typography
                           key={schedule.spoon_id}
                           variant='subtitle2'
@@ -75,6 +76,7 @@ function WeeklySchedule() {
                         >
                           {schedule.recipe_name}
                         </Typography>
+
                       </Grid>
                       <Grid item>
                         <IconButton
