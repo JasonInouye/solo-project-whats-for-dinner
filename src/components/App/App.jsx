@@ -28,16 +28,15 @@ function App() {
         <div className='bg-image'>
           <Nav />
           <body>
-          <Stack direction='row' spacing={3} justifyContent='space-between'>
-          <ProtectedRoute>
-            <SideBar />
-          </ProtectedRoute>
-            <MainContainer />
-          </Stack>
-          <ProtectedRoute>
+            <Stack direction='row' spacing={3} justifyContent='space-between'>
+              <SideBar />
+
+              <MainContainer />
+            </Stack>
+
             <WeeklySchedule />
-          </ProtectedRoute>
-          {/* <Footer /> */}
+
+            {/* <Footer /> */}
           </body>
         </div>
       </Router>
