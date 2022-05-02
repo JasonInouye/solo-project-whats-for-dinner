@@ -9,8 +9,9 @@ import MainContainer from '../MainContainer/MainContainer';
 import WeeklySchedule from '../WeeklySchedule/WeeklySchedule';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
+import OuterContainer from '../OuterContainer/OuterContainer';
+import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
-
 import { Box, Stack } from '@mui/material';
 
 function App() {
@@ -28,15 +29,16 @@ function App() {
         <div className='bg-image'>
           <Nav />
           <body>
-            <Stack direction='row' spacing={3} justifyContent='space-between'>
-              <SideBar />
+          <OuterContainer/>
 
-              <MainContainer />
-            </Stack>
-
+          {user.id ? (
+            // If the user is already logged in,
+            // redirect them to the /user page
             <WeeklySchedule />
-
-            {/* <Footer /> */}
+          ) : (
+            // Otherwise, show the registration page
+            <RegisterPage />
+          )}
           </body>
         </div>
       </Router>
