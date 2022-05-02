@@ -42,8 +42,8 @@ function SingleSearchResults() {
 
   const searchResults = async (name) => {
     const data = await fetch(
-      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
+      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
       // `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${params.id}/information?rapidapi-key=${process.env.REACT_RAPID_API_KEY}`
     );
     const recipes = await data.json();
@@ -60,7 +60,6 @@ function SingleSearchResults() {
   };
 
   const handleFavorite = (item) => {
-    console.log('CLICKED HEART', item);
     let favoriteItem = {
       spoon_id: item.id,
       recipe_name: item.title,

@@ -12,16 +12,26 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import { red } from '@mui/material/colors';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { useDispatch } from 'react-redux';
 
 function RecipeDetails() {
   let params = useParams();
   const [recipeDetails, setRecipeDetails] = useState({});
   const [selectedButton, setSelectedButton] = useState('ingredients');
+  const MySwal = withReactContent(Swal);
+  const dispatch = useDispatch();
+  const [favoriteItem, setFavoriteItem] = useState({
+    spoon_id: 0,
+    recipe_name: '',
+    recipe_image: '',
+  });
 
   const fetchDetails = async () => {
     const data = await fetch(
-      //`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
-      `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_SECOND_API_KEY}`
+      `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+      //`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_SECOND_API_KEY}`
       // `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${params.id}/information?rapidapi-key=${process.env.REACT_RAPID_API_KEY}`
     );
     const detailData = await data.json();
@@ -31,6 +41,17 @@ function RecipeDetails() {
   useEffect(() => {
     fetchDetails();
   }, [params.id]);
+
+  const handleFavorite = (item) => {
+    let favoriteItem = {
+      spoon_id: item.id,
+      recipe_name: item.title,
+      recipe_image: item.image,
+    };
+    dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
+    MySwal.fire({title: `Recipe added to favorites!`,confirmButtonColor: "#FF0000"});
+    setFavoriteItem({ id: 0, image: '', title: '' });
+  };
 
   console.log('this is the JSON for details', recipeDetails);
 
@@ -71,6 +92,9 @@ function RecipeDetails() {
               >
                 Instructions
               </Button>
+              <Button onClick={() => handleFavorite(recipeDetails)}>
+                      Favorite Recipe
+                    </Button>
 
             </CardActions>
             <CardContent>
