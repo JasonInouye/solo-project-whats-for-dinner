@@ -68,7 +68,7 @@ function WeeklySchedule() {
                     </Typography>
                     <Grid container>
                       <Grid item>
-                      <Link to={'/recipeDetails/' + schedule.spoon_id} onClose={(event) => setOpen(false)}>
+
                         <Typography
                           key={schedule.spoon_id}
                           variant='subtitle2'
@@ -76,7 +76,7 @@ function WeeklySchedule() {
                         >
                           {schedule.recipe_name}
                         </Typography>
-                        </Link>
+
                       </Grid>
                       <Grid item>
                         <IconButton
