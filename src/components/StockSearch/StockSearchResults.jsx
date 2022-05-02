@@ -106,7 +106,7 @@ function StockSearchResults() {
                 </Link>
                 <p>{item.missedIngredientCount}</p>
                 <p>{item.usedIngredientCount}</p> */}
-                <Card sx={{ width: 345, margin: 8, borderRadius: '16px' }}>
+                <Card sx={{ width: 375, margin: 8, borderRadius: '16px' }}>
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
@@ -115,6 +115,7 @@ function StockSearchResults() {
                     }
                     titleTypographyProps={{
                       fontWeight: 'Bold',
+                      fontSize: 18,
                     }}
                     title={item.title}
                   />

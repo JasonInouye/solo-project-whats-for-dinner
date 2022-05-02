@@ -61,7 +61,7 @@ function DinnerHome() {
           return (
             <div key={favoriteRecipe.id}>
               <Grid item xs={12} md={12} key={favoriteRecipe.id}>
-                <Card sx={{ width: 350, margin: 8, borderRadius: '16px' }}>
+                <Card sx={{ width: 375, margin: 8, borderRadius: '16px' }}>
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
@@ -70,7 +70,7 @@ function DinnerHome() {
                     }
                     titleTypographyProps={{
                       fontWeight: 'Bold',
-                      fontSize: 12,
+                      fontSize: 18,
                     }}
                     title={favoriteRecipe.recipe_name}
                   />
