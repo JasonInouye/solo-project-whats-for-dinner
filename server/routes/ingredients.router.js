@@ -52,8 +52,9 @@ router.get('/all', (req, res) => {
   SELECT 
     string_agg(ingredient, ',') as all_ingredients 
   FROM "ingredients_instock"
+  WHERE "user_id" = $1
   ;`;
-  pool.query(query)
+  pool.query(query, [req.user.id])
   
   .then( result => {
     res.send(result.rows);
