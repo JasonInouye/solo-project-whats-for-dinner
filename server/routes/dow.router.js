@@ -33,9 +33,11 @@ router.get('/schedule', (req, res) => {
   FROM "weekly_plan" a, "recipes" b, "dow" c
   WHERE a."spoon_id" = b."spoon_id"
   AND a."dow" = c."dow"
+  AND a."user_id" = $1
+  AND a."user_id" = b."user_id"
   ORDER BY c."id"
   ;`;
-  pool.query(query)
+  pool.query(query, [req.user.id])
   .then( result => {
     //console.log( 'This is the log for /schedule', result.rows);
     res.send(result.rows);

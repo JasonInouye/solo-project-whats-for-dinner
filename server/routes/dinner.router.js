@@ -13,9 +13,10 @@ router.get('/', (req, res) => {
   a."recipe_image"
   FROM "recipes" a
   WHERE a."favorited" = true
+  AND a."user_id" = $1
   ORDER by a."id" DESC
   ;`;
-  pool.query(query)
+  pool.query(query, [req.user.id])
   .then( result => {
     res.send(result.rows);
   })

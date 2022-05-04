@@ -11,9 +11,10 @@ router.get('/refrigerator', (req, res) => {
     *
   FROM "ingredients_instock"
   WHERE UPPER("location") = 'REFRIGERATOR'
+  AND "user_id" = $1
   ORDER by UPPER("ingredient")
   ;`;
-  pool.query(query)
+  pool.query(query, [req.user.id])
   .then( result => {
     res.send(result.rows);
   })
@@ -30,9 +31,10 @@ router.get('/pantry', (req, res) => {
     *
   FROM "ingredients_instock"
   WHERE UPPER("location") = 'PANTRY'
+  AND "user_id" = $1
   ORDER by UPPER("ingredient")
   ;`;
-  pool.query(query)
+  pool.query(query, [req.user.id])
   .then( result => {
     res.send(result.rows);
   })
@@ -70,9 +72,10 @@ router.get('/spices', (req, res) => {
     *
   FROM "ingredients_instock"
   WHERE UPPER("location") = 'SPICES'
+  AND "user_id" = $1
   ORDER by UPPER("ingredient")
   ;`;
-  pool.query(query)
+  pool.query(query, [req.user.id])
   .then( result => {
     res.send(result.rows);
   })
