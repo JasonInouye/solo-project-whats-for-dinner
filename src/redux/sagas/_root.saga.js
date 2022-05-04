@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import favorites from './dinner.saga';
 import dow from './dow.saga'
 import ingredients from './ingredients.saga';
+import search from './search.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     favorites(), // This is the dinner.saga
     dow(), //day of the week
     ingredients(), // ingredients instock
+    search(),
   ]);
 }

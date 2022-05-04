@@ -5,7 +5,6 @@ const router = express.Router();
 require('dotenv').config();
 
 router.get('/:q', (req, res) => {
-    console.log( 'WTF', req.params.q);
     let searchString = req.params.q
     axios
         .get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${searchString}`)
