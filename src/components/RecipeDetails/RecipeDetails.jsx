@@ -12,15 +12,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import { red } from '@mui/material/colors';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import swal from 'sweetalert';
 import { useDispatch } from 'react-redux';
 
 function RecipeDetails() {
   let params = useParams();
   const [recipeDetails, setRecipeDetails] = useState({});
   const [selectedButton, setSelectedButton] = useState('ingredients');
-  const MySwal = withReactContent(Swal);
   const dispatch = useDispatch();
   const [favoriteItem, setFavoriteItem] = useState({
     spoon_id: 0,
@@ -49,7 +47,7 @@ function RecipeDetails() {
       recipe_image: item.image,
     };
     dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
-    MySwal.fire({title: `Recipe added to favorites!`,confirmButtonColor: "#FF0000"});
+    swal({title: `Recipe added to favorites!`,dangerMode: true});
     setFavoriteItem({ id: 0, image: '', title: '' });
   };
 

@@ -8,8 +8,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import { red } from '@mui/material/colors';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import swal from 'sweetalert';
 import {
   Box,
   Button,
@@ -31,7 +30,6 @@ function StockSearchResults() {
   const [stockRecipes, setStockRecipes] = useState([]);
   const dispatch = useDispatch();
   const params = useParams();
-  const MySwal = withReactContent(Swal);
   const [open, setOpen] = useState(false);
   const [dow, setDow] = useState('');
   const dowList = useSelector((store) => store.dow);
@@ -66,7 +64,7 @@ function StockSearchResults() {
       recipe_image: item.image,
     };
     dispatch({ type: 'ADD_FAVORITE', payload: favoriteItem });
-    MySwal.fire({title: `Recipe added to favorites!`,confirmButtonColor: "#FF0000"});
+    swal({title: `Recipe added to favorites!`,dangerMode: true});
     setFavoriteItem({ id: 0, image: '', title: '' });
   };
 

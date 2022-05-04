@@ -9,8 +9,9 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import swal from 'sweetalert';
+// import Swal from 'sweetalert2';
+// import withReactContent from 'sweetalert2-react-content';
 import { Button, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 
@@ -20,7 +21,7 @@ function DinnerHome() {
   const favorite = useSelector((store) => store.favorite);
   const dowList = useSelector((store) => store.dow);
   const [dow, setDow] = useState('');
-  const MySwal = withReactContent(Swal);
+  // const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     // dispatch to get all items to display on the DOM
@@ -50,7 +51,7 @@ function DinnerHome() {
     };
     // This initiates the drop down for the days
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
-    MySwal.fire({title: `Recipe added to ${dow}`,confirmButtonColor: "#FF0000"});
+    swal({title: `Recipe added to ${dow}`,dangerMode: true});
   };
 
   return (
