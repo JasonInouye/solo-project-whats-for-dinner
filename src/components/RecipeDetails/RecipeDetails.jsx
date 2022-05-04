@@ -13,12 +13,12 @@ import { useParams } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import { red } from '@mui/material/colors';
 import swal from 'sweetalert';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function RecipeDetails() {
   let params = useParams();
-  const [recipeDetails, setRecipeDetails] = useState({});
   const [selectedButton, setSelectedButton] = useState('ingredients');
+  const recipeDetails = useSelector((store) => store.recipeDetails);
   const dispatch = useDispatch();
   const [favoriteItem, setFavoriteItem] = useState({
     spoon_id: 0,
@@ -26,18 +26,22 @@ function RecipeDetails() {
     recipe_image: '',
   });
 
-  const fetchDetails = async () => {
-    const data = await fetch(
-      //`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
-      //`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_SECOND_API_KEY}`
-      `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_THIRD_API_KEY}`
-    );
-    const detailData = await data.json();
-    setRecipeDetails(detailData);
-  };
+  // const fetchDetails = async () => {
+  //   const data = await fetch(
+  //     //`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+  //     //`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_SECOND_API_KEY}`
+  //     `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_THIRD_API_KEY}`
+  //   );
+  //   const detailData = await data.json();
+  //   setRecipeDetails(detailData);
+  // };
+
+  const handleDetails = () => {
+    dispatch({ type: 'GET_DETAILS', payload: params.id});
+  }
 
   useEffect(() => {
-    fetchDetails();
+    handleDetails();
   }, [params.id]);
 
   const handleFavorite = (item) => {
@@ -100,7 +104,11 @@ function RecipeDetails() {
                 <div className='ingredients'>
                   <ul>
                     {recipeDetails.extendedIngredients?.map((ingredient) => {
-                      return <li key={ingredient.id}>{ingredient.original}</li>;
+                     return (
+                      <div key={ingredient.id}>
+                        <li>{ingredient.original}</li>
+                      </div>
+                     )
                     })}
                   </ul>
                 </div>
