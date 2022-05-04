@@ -24,8 +24,8 @@ import {
 } from '@mui/material';
 
 function SingleSearchResults() {
-  // const [searchedRecipes, setSearchedRecipes] = useState([]);
-  const searchedRecipes = useSelector((store) => store.searchData);
+  const [searchedRecipes, setSearchedRecipes] = useState([]);
+  // const searchedRecipes = useSelector((store) => store.searchData);
   const dispatch = useDispatch();
   const params = useParams();
   const [open, setOpen] = useState(false);
@@ -37,21 +37,22 @@ function SingleSearchResults() {
     recipe_image: '',
   });
 
-  // const searchResults = async (name) => {
-  //   const data = await fetch(
-  //     //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
-  //     //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
-  //     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
-  //   );
-  //   const recipes = await data.json();
-  //   setSearchedRecipes(recipes.results);
-  // };
+  const searchResults = async (name) => {
+    const data = await fetch(
+      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
+      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
+    );
+    const recipes = await data.json();
+    setSearchedRecipes(recipes.results);
+  };
 
   console.log( 'This is the results for search', searchedRecipes );
 
   useEffect(() => {
-    dispatch({ type:'GET_SEARCH', payload: params.searchItem})
-    // searchResults(params.searchItem);
+    // dispatch({ type:'GET_SEARCH', payload: params.searchItem})
+    // console.log( 'The search item is', params.searchItem);
+    searchResults(params.searchItem);
     dispatch({ type: 'GET_DOW' });
   }, [params.searchItem]);
 
@@ -89,7 +90,7 @@ function SingleSearchResults() {
   return (
     <div className='main-container'>
       <Grid container spacing={6}>
-        {searchedRecipes.results.map((item) => {
+        {searchedRecipes.map((item) => {
           return (
             <div key={item.id}>
               <Grid item xs={12} md={12}>
