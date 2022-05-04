@@ -6,6 +6,8 @@ import dow from './dow.get.reducers'
 import ingredients from './ingredients.reducer'
 import editIngredient from './edit.reducer';
 import scheduleData from './schedule.reducer';
+import recipeDetails from './details.reducer';
+import searchData from './search.reducer.js'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
   ingredients,
   editIngredient,
   scheduleData,
+  recipeDetails,
+  searchData,
 });
 
 export default rootReducer;

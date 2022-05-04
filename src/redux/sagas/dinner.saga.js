@@ -30,8 +30,21 @@ function* deleteFavorite(action) {
     }
 }
 
+// This is the details API
+function* fetchDetails(action){
+    try {
+        const response = yield axios.get(`/api/recipeDetails/${action.payload}`)
+        yield put ({
+            type: 'SET_DETAILS', payload: response.data
+        })
+    } catch(err) {
+        console.log(err);
+    }
+}
+
 function* getFavorites() {
     yield takeLatest('GET_FAVORITES', retrieveFavorites);
+    yield takeLatest('GET_DETAILS', fetchDetails);
     yield takeLatest('ADD_FAVORITE', addFavorite);
     yield takeLatest('DELETE_FAVORITE', deleteFavorite);
 }

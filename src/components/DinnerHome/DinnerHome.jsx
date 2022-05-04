@@ -29,19 +29,7 @@ function DinnerHome() {
     dispatch({ type: 'GET_DOW' });
   }, []);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason !== 'backdropClick') {
-      setOpen(false);
-    }
-  };
 
   const saveDow = (favoriteRecipe) => {
     let addDow = {
