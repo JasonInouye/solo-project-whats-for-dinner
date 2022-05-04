@@ -39,9 +39,9 @@ function SingleSearchResults() {
 
   const searchResults = async (name) => {
     const data = await fetch(
-      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
       //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
+      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
     );
     const recipes = await data.json();
     setSearchedRecipes(recipes.results);
