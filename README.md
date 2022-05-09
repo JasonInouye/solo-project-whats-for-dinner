@@ -1,6 +1,6 @@
 # What's For Dinner
 
-What's For Dinner is a recipe app that has functionality to plan your meals out for the week. It allows the user to store the ingredients that they have in their house. WFD also allows you to perform 2 search types. A traditional search by ingredient/food type or you can also do a comprehensive search on all of the ingredients you have in your house. 
+What’s For Dinner? will keep track of your ingredients in your house, help you plan dinner for the week and provide two recipe search methods. The first is a traditional search by ingredient (ex. ground beef) or by food type (ex. tacos). The second search method will return recipes based on your current ingredient inventory. 
 
 ### Description
 
