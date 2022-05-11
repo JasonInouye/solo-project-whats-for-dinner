@@ -24,7 +24,8 @@ import {
 } from '@mui/material';
 
 function SingleSearchResults() {
-  const searchedRecipes = useSelector((store) => store.searchData.results);
+  //const searchedRecipes = useSelector((store) => store.searchData.results);
+  const [searchRecipes, setSearchRecipes] = useState([]);
   const dispatch = useDispatch();
   const params = useParams();
   const [open, setOpen] = useState(false);
@@ -36,27 +37,32 @@ function SingleSearchResults() {
     recipe_image: '',
   });
 
-  // const searchResults = async (name) => {
-  //   const data = await fetch(
-  //     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
-  //     //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
-  //     //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
-  //   );
-  //   const recipes = await data.json();
-  //   setSearchedRecipes(recipes.results);
-  // };
+  const searchResults = async (name) => {
+    const data = await fetch(
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
+      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
+      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
+    );
+    const recipes = await data.json();
+    setSearchRecipes(recipes.results);
+  };
 
   useEffect(() => {
-    // console.log( 'The search item is', params.searchItem);
-    //searchResults(params.searchItem); //this is the original line
-    handleSingleSearch(params.searchItem)
+    //console.log( 'The search item is', params.searchItem);
+    searchResults(params.searchItem); //this is the original line
+    //handleSingleSearch(params.searchItem)
+    // console.log('can i log in here');
+    //dispatch({ type:'GET_SEARCH', payload: params.searchItem})
     dispatch({ type: 'GET_DOW' });
   }, [params.searchItem]);
 
+  console.log( 'WHATS GOING ON ARE YOU RUNNING', params.searchItem);
+
   // this is the new code to remove if we need to revert back
-  const handleSingleSearch = () => {
-    dispatch({ type:'GET_SEARCH', payload: params.searchItem})
-  }
+  // const handleSingleSearch = (searchItem) => {
+  //   console.log( 'WHATS GOING ON ARE YOU RUNNING');
+  //   dispatch({ type:'GET_SEARCH', payload: searchItem})
+  // }
 
   const handleFavorite = (item) => {
     let favoriteItem = {
@@ -75,6 +81,8 @@ function SingleSearchResults() {
     }
   };
 
+  console.log( 'DOES THIS SHIT WORK?', searchRecipes);
+
   const saveDow = (favoriteRecipe) => {
     let addDow = {
       id: favoriteRecipe.id,
@@ -88,7 +96,7 @@ function SingleSearchResults() {
   return (
     <div className='main-container'>
       <Grid container spacing={6}>
-        {searchedRecipes.map((item) => {
+        {searchRecipes.map((item) => {
           return (
             <div key={item.id}>
               <Grid item xs={12} md={12}>
