@@ -9,8 +9,7 @@ router.get('/:q', (req, res) => {
     axios
         .get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${searchString}`)
         .then( (response) => {
-            console.log('This is working');
-            res.send(response.data);
+            res.send(response.data.results);
         })
         .catch( (err) => {
             console.log(err);
