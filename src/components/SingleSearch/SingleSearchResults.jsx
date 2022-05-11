@@ -24,8 +24,7 @@ import {
 } from '@mui/material';
 
 function SingleSearchResults() {
-  const [searchedRecipes, setSearchedRecipes] = useState([]);
-  // const searchedRecipes = useSelector((store) => store.searchData);
+  const searchedRecipes = useSelector((store) => store.searchData.results);
   const dispatch = useDispatch();
   const params = useParams();
   const [open, setOpen] = useState(false);
@@ -46,8 +45,6 @@ function SingleSearchResults() {
   //   const recipes = await data.json();
   //   setSearchedRecipes(recipes.results);
   // };
-
-  console.log( 'This is the results for search', searchedRecipes );
 
   useEffect(() => {
     // console.log( 'The search item is', params.searchItem);
