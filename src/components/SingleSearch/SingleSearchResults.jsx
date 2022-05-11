@@ -50,15 +50,15 @@ function SingleSearchResults() {
   console.log( 'This is the results for search', searchedRecipes );
 
   useEffect(() => {
-    // dispatch({ type:'GET_SEARCH', payload: params.searchItem})
     // console.log( 'The search item is', params.searchItem);
-    searchResults(params.searchItem);
+    //searchResults(params.searchItem);
+    handleSingleSearch(params.searchItem)
     dispatch({ type: 'GET_DOW' });
   }, [params.searchItem]);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleSingleSearch = () => {
+    dispatch({ type:'GET_SEARCH', payload: params.searchItem})
+  }
 
   const handleFavorite = (item) => {
     let favoriteItem = {
