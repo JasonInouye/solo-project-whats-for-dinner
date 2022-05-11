@@ -37,25 +37,26 @@ function SingleSearchResults() {
     recipe_image: '',
   });
 
-  const searchResults = async (name) => {
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
-      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
-      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
-    );
-    const recipes = await data.json();
-    setSearchedRecipes(recipes.results);
-  };
+  // const searchResults = async (name) => {
+  //   const data = await fetch(
+  //     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
+  //     //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
+  //     //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
+  //   );
+  //   const recipes = await data.json();
+  //   setSearchedRecipes(recipes.results);
+  // };
 
   console.log( 'This is the results for search', searchedRecipes );
 
   useEffect(() => {
     // console.log( 'The search item is', params.searchItem);
-    //searchResults(params.searchItem);
+    //searchResults(params.searchItem); //this is the original line
     handleSingleSearch(params.searchItem)
     dispatch({ type: 'GET_DOW' });
   }, [params.searchItem]);
 
+  // this is the new code to remove if we need to revert back
   const handleSingleSearch = () => {
     dispatch({ type:'GET_SEARCH', payload: params.searchItem})
   }
