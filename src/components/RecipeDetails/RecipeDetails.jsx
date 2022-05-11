@@ -36,13 +36,13 @@ function RecipeDetails() {
   //   setRecipeDetails(detailData);
   // };
 
-  const handleDetails = () => {
-    dispatch({ type: 'GET_DETAILS', payload: params.id});
-  }
-
   useEffect(() => {
     handleDetails();
   }, [params.id]);
+
+  const handleDetails = () => {
+    dispatch({ type: 'GET_DETAILS', payload: params.id});
+  }
 
   const handleFavorite = (item) => {
     let favoriteItem = {
