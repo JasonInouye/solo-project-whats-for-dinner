@@ -23,7 +23,7 @@ import {
   Select,
 } from '@mui/material';
 
-function SingleSearchResults(props) {
+function SingleSearchResults() {
   const searchRecipes = useSelector((store) => store.searchData?.results);
   //const [searchRecipes, setSearchRecipes] = useState([]);
   const dispatch = useDispatch();
