@@ -7,7 +7,7 @@ require('dotenv').config();
 router.get('/:q', (req, res) => {
     let searchString = req.params.q
     axios
-        .get(`https://api.spoonacular.com/recipes/${searchString}/information?apiKey=${process.env.REACT_APP_API_KEY}`)
+        .get(`https://api.spoonacular.com/recipes/${searchString}/information?apiKey=${process.env.REACT_APP_SECOND_API_KEY}`)
         .then( (response) => {
             res.send(response.data);
         })
