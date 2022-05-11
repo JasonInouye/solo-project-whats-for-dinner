@@ -47,7 +47,7 @@ function SingleSearchResults() {
   //   setSearchRecipes(recipes.results);
   // };
 
-  console.log('does this work before use effect', params?.searchItem);
+  //console.log('does this work before use effect', params?.searchItem);
   // useEffect(() => {
   //   //console.log( 'The search item is', params.searchItem);
   //   searchResults(params.searchItem); //this is the original line
@@ -67,10 +67,8 @@ function SingleSearchResults() {
   }, [params?.searchItem]);
 
   // this is the new code to remove if we need to revert back
-  console.log('right before handle', params.searchItem);
 
   const handleSingleSearch = (searchItem) => {
-    console.log( 'WHATS GOING ON ARE YOU RUNNING', searchItem);
     dispatch({ type:'GET_SINGLE', payload: searchItem})
   }
 
