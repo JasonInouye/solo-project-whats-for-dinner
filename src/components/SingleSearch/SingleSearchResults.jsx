@@ -56,8 +56,6 @@ function SingleSearchResults() {
     dispatch({ type: 'GET_DOW' });
   }, [params.searchItem]);
 
-  console.log( 'WHATS GOING ON ARE YOU RUNNING', params.searchItem);
-
   // this is the new code to remove if we need to revert back
   // const handleSingleSearch = (searchItem) => {
   //   console.log( 'WHATS GOING ON ARE YOU RUNNING');
@@ -80,8 +78,6 @@ function SingleSearchResults() {
       setOpen(false);
     }
   };
-
-  console.log( 'DOES THIS SHIT WORK?', searchRecipes);
 
   const saveDow = (favoriteRecipe) => {
     let addDow = {
