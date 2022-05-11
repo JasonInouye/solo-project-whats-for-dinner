@@ -27,35 +27,38 @@ import {
 import { Favorite, Percent } from '@mui/icons-material';
 
 function StockSearchResults() {
-  const [stockRecipes, setStockRecipes] = useState([]);
+  const stockRecipes = useSelector((store) => store.searchData);
+  //const [stockRecipes, setStockRecipes] = useState([]);
   const dispatch = useDispatch();
   const params = useParams();
   const [open, setOpen] = useState(false);
   const [dow, setDow] = useState('');
   const dowList = useSelector((store) => store.dow);
 
-  const stockResults = async (name) => {
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_API_KEY}&ranking=2&number=20&ingredients=${name}`
-      //`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&ranking=2&number=20&ingredients=${name}`
-      //`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&ranking=2&number=20&ingredients=${name}`
-    );
-    //console.log("this is the data", data);
-    const recipes = await data.json();
-    //console.log('this is the recipes results 1', recipes);
-    setStockRecipes(recipes);
-  };
+  // const stockResults = async (name) => {
+  //   const data = await fetch(
+  //     `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_API_KEY}&ranking=2&number=20&ingredients=${name}`
+  //     //`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&ranking=2&number=20&ingredients=${name}`
+  //     //`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&ranking=2&number=20&ingredients=${name}`
+  //   );
+  //   //console.log("this is the data", data);
+  //   const recipes = await data.json();
+  //   //console.log('this is the recipes results 1', recipes);
+  //   setStockRecipes(recipes);
+  // };
 
   useEffect(() => {
-    stockResults(params.searchString);
+    handleManySearch(params.searchString);
   }, [params.searchString]);
 
   //console.log("this is the search results of PARAMS", params.searchString);
   //console.log("this is the search results YAHOO", stockRecipes);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleManySearch = (searchItem) => {
+    //This search is for all of my ingredients
+    dispatch({ type:'GET_MANY', payload: searchItem})
+  }
+  
 
   const handleFavorite = (item) => {
     let favoriteItem = {

@@ -14,6 +14,7 @@ const dowRouter = require('./routes/dow.router')
 const ingredientsRouter = require('./routes/ingredients.router')
 const detailsRouter = require('./routes/details.router')
 const searchRouter = require('./routes/search.router')
+const stockRouter = require('./routes/stock.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -33,6 +34,7 @@ app.use('/api/dow', dowRouter);
 app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/recipeDetails', detailsRouter)
 app.use('/api/search', searchRouter)
+app.use('/api/stock', stockRouter)
 
 // Serve static files
 app.use(express.static('build'));
