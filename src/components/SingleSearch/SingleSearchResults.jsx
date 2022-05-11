@@ -23,9 +23,9 @@ import {
   Select,
 } from '@mui/material';
 
-function SingleSearchResults() {
-  //const searchedRecipes = useSelector((store) => store.searchData.results);
-  const [searchRecipes, setSearchRecipes] = useState([]);
+function SingleSearchResults(props) {
+  const searchRecipes = useSelector((store) => store.searchData.results);
+  //const [searchRecipes, setSearchRecipes] = useState([]);
   const dispatch = useDispatch();
   const params = useParams();
   const [open, setOpen] = useState(false);
@@ -37,30 +37,43 @@ function SingleSearchResults() {
     recipe_image: '',
   });
 
-  const searchResults = async (name) => {
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
-      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
-      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
-    );
-    const recipes = await data.json();
-    setSearchRecipes(recipes.results);
-  };
+  // const searchResults = async (name) => {
+  //   const data = await fetch(
+  //     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
+  //     //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SECOND_API_KEY}&query=${name}`
+  //     //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_THIRD_API_KEY}&query=${name}`
+  //   );
+  //   const recipes = await data.json();
+  //   setSearchRecipes(recipes.results);
+  // };
+
+  console.log('does this work before use effect', params.searchItem);
+  // useEffect(() => {
+  //   //console.log( 'The search item is', params.searchItem);
+  //   searchResults(params.searchItem); //this is the original line
+  //   //handleSingleSearch(params.searchItem)
+  //   //console.log('can i log in here');
+  //   //dispatch({ type:'GET_SEARCH', payload: params.searchItem})
+  //   dispatch({ type: 'GET_DOW' });
+  // }, [params.searchItem]);
+
+  // useEffect(() => {
+  //   handleSingleSearch();
+  //   //dispatch({ type:'GET_SINGLE', payload: params.searchItem})
+  // }, [[params.searchItem]])
 
   useEffect(() => {
-    //console.log( 'The search item is', params.searchItem);
-    searchResults(params.searchItem); //this is the original line
-    //handleSingleSearch(params.searchItem)
-    // console.log('can i log in here');
-    //dispatch({ type:'GET_SEARCH', payload: params.searchItem})
-    dispatch({ type: 'GET_DOW' });
+    handleSingleSearch(params.searchItem);
   }, [params.searchItem]);
 
   // this is the new code to remove if we need to revert back
-  // const handleSingleSearch = (searchItem) => {
-  //   console.log( 'WHATS GOING ON ARE YOU RUNNING');
-  //   dispatch({ type:'GET_SEARCH', payload: searchItem})
-  // }
+  console.log('right before handle', params.searchItem);
+  console.log('right before handle2', props.searchItem);
+
+  const handleSingleSearch = (searchItem) => {
+    console.log( 'WHATS GOING ON ARE YOU RUNNING', searchItem);
+    dispatch({ type:'GET_SINGLE', payload: searchItem})
+  }
 
   const handleFavorite = (item) => {
     let favoriteItem = {
@@ -88,6 +101,8 @@ function SingleSearchResults() {
     dispatch({ type: 'SET_MENU_DOW', payload: addDow });
     setOpen(false);
   };
+
+  console.log('This is the value before return', params.searchItem );
 
   return (
     <div className='main-container'>
