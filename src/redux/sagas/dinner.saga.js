@@ -32,6 +32,7 @@ function* deleteFavorite(action) {
 
 // This is the details API
 function* fetchDetails(action){
+
     try {
         const response = yield axios.get(`/api/recipeDetails/${action.payload}`)
         yield put ({

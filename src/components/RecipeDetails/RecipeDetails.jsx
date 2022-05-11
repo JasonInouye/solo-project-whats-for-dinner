@@ -20,11 +20,11 @@ function RecipeDetails() {
   const [selectedButton, setSelectedButton] = useState('ingredients');
   const recipeDetails = useSelector((store) => store.recipeDetails);
   const dispatch = useDispatch();
-  const [favoriteItem, setFavoriteItem] = useState({
-    spoon_id: 0,
-    recipe_name: '',
-    recipe_image: '',
-  });
+  // const [favoriteItem, setFavoriteItem] = useState({
+  //   spoon_id: 0,
+  //   recipe_name: '',
+  //   recipe_image: '',
+  // });
 
   // const fetchDetails = async () => {
   //   const data = await fetch(
@@ -55,7 +55,7 @@ function RecipeDetails() {
     setFavoriteItem({ id: 0, image: '', title: '' });
   };
 
-  console.log('this is the JSON for details', recipeDetails);
+  //console.log('this is the JSON for details', recipeDetails);
 
   return (
     <div className='main-container'>
