@@ -55,7 +55,7 @@ function RecipeDetails() {
     setFavoriteItem({ id: 0, image: '', title: '' });
   };
 
-  console.log('this is the JSON for details', recipeDetails);
+  //console.log('this is the JSON for details', recipeDetails);
 
   return (
     <div className='main-container'>
