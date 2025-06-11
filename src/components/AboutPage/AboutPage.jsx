@@ -18,7 +18,8 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { FaReact, FaNodeJs, FaRegHandshake } from 'react-icons/fa'
 import { AiFillApi } from 'react-icons/ai'
-import { SiReduxsaga, SiMaterialui, SiPostgresql } from 'react-icons/si'
+import { SiMaterialdesign } from 'react-icons/si';
+
 
 // This is one of our simplest components
 // It doesn't have local state,

@@ -66,7 +66,7 @@ router.post('/', (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log( 'error in DOW POST', err);
+      console.log( 'error in DOW POST dow ROUTER', err);
       res.sendStatus(500);
     });
 });

@@ -90,11 +90,15 @@ router.post('/', (req, res) => {
   // POST route code here
   console.log( 'Inside of the INGREDIENT POST', req.body);
 
+  const quantity = req.body.quantity ?? 1;
+
+  const unit = req.body.unit ?? 'unit';
+
   const sqlText =`
-    INSERT INTO "ingredients_instock" ("ingredient", "location", "user_id")
-    VALUES ($1, $2, $3)
+    INSERT INTO "ingredients_instock" ("ingredient", "location", "user_id", "quantity", "unit")
+    VALUES ($1, $2, $3, $4, $5)
     ;`;
-  const insertValues = [req.body.ingredient, req.body.location, req.user.id]
+  const insertValues = [req.body.ingredient, req.body.location, req.user.id, quantity, unit]
 
   pool.query(sqlText, insertValues)
     .then((result) => {
@@ -102,7 +106,7 @@ router.post('/', (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log( 'error in DOW POST', err);
+      console.log( 'error in DOW POST Ingredient', err);
       res.sendStatus(500);
     });
 });

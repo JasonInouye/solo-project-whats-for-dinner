@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+console.log('Spoonacular API Key Loaded:', process.env.REACT_APP_API_KEY);
 
 const app = express();
 
@@ -40,7 +41,7 @@ app.use('/api/stock', stockRouter)
 app.use(express.static('build'));
 
 // App Set //
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 /** Listen * */
 app.listen(PORT, () => {
