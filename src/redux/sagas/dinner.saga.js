@@ -15,6 +15,7 @@ function* retrieveFavorites (){
 function* addFavorite (action){
     try{
         yield axios.post('/api/dinner', action.payload);
+        yield put({ type: 'GET_FAVORITES' });
     } catch(err) {
         console.log('error in addFavorite', err);
     }

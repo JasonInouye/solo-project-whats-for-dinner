@@ -31,10 +31,10 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   console.log( 'inside of Favorite POST', req.body);
   const sqlText =`
-  INSERT INTO "recipes" ("spoon_id", "recipe_name", "recipe_image", "user_id")
-  VALUES ($1, $2, $3, $4)
+  INSERT INTO "recipes" ("spoon_id", "recipe_name", "recipe_image", "likes", "favorited", "user_id")
+  VALUES ($1, $2, $3, $4, true, $5)
   ;`;
-const insertValues = [req.body.spoon_id, req.body.recipe_name, req.body.recipe_image, req.user.id]
+const insertValues = [req.body.spoon_id, req.body.recipe_name, req.body.recipe_image, 0, req.user.id]
 
 pool.query(sqlText, insertValues)
 .then((result) => {

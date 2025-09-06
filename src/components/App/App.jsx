@@ -24,36 +24,58 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Box>
-      <Router>
-        <div className='bg-image'>
-          <Nav />
-          <body>
-            <Stack direction='row' spacing={3} justifyContent='space-between'>
-              {user.id ? (
-                // If the user is already logged in,
-                // redirect them to the /user page
-                <SideBar />
-              ) : (
-                // Otherwise, show the registration page
-                <SideBarNo />
-              )}
+    <Router>
+      <div className='bg-image'>
+        <Nav />
+        <div style={{ 
+          display: 'flex', 
+          minHeight: 'calc(100vh - 88px)',
+          marginTop: '88px'
+        }}>
+          {/* Left Sidebar */}
+          <aside style={{
+            width: '280px',
+            flexShrink: 0,
+            padding: 'var(--spacing-lg)',
+            background: 'rgba(255, 255, 255, 0.6)',
+            backdropFilter: 'blur(10px)',
+            borderRight: '1px solid rgba(0, 0, 0, 0.1)'
+          }}>
+            {user.id ? <SideBar /> : <SideBarNo />}
+          </aside>
 
+          {/* Main Content Area */}
+          <main style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100%'
+          }}>
+            <div style={{
+              flex: 1,
+              padding: 'var(--spacing-lg)',
+              maxWidth: '800px',
+              margin: '0 auto',
+              width: '100%'
+            }}>
               <MainContainer />
-            </Stack>
-            {user.id ? (
-                // If the user is already logged in,
-                // redirect them to the /user page
+            </div>
+            
+            {/* Weekly Schedule at Bottom */}
+            {user.id && (
+              <section style={{
+                background: 'rgba(255, 255, 255, 0.8)',
+                backdropFilter: 'blur(10px)',
+                borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+                padding: 'var(--spacing-lg)'
+              }}>
                 <WeeklySchedule />
-              ) : (
-                // Otherwise, show the registration page
-                <SideBarNo />
-              )}
-            {/* <Footer /> */}
-          </body>
+              </section>
+            )}
+          </main>
         </div>
-      </Router>
-    </Box>
+      </div>
+    </Router>
   );
 }
 

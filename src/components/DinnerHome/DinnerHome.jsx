@@ -48,7 +48,6 @@ function DinnerHome() {
       <Grid container spacing={6}>
         {favorite.map((favoriteRecipe) => {
           return (
-            <div key={favoriteRecipe.id}>
               <Grid item xs={12} md={12} key={favoriteRecipe.id}>
                 <Card sx={{ width: 375, margin: 8, borderRadius: '16px' }}>
                   <CardHeader
@@ -104,7 +103,6 @@ function DinnerHome() {
                   </CardActions>
                 </Card>
               </Grid>
-            </div>
           );
         })}
       </Grid>
